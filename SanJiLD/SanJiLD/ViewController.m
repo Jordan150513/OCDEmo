@@ -93,6 +93,7 @@
         //这样会存在一种情况，两个范围不一样，越界会崩溃
         //更加好的一种方法，只要滚动省，市县，全部滚动到第一个
         [self.pickView selectRow:0 inComponent:1 animated:YES];
+        [self.pickView selectRow:0 inComponent:2 animated:YES];
     }else if(component == 1){
     //滚动选择市是row,设置县
         NSInteger aleadyChooseProvinceIndex = [pickerView selectedRowInComponent:0];
