@@ -98,6 +98,7 @@
     //滚动选择市是row,设置县
         NSInteger aleadyChooseProvinceIndex = [pickerView selectedRowInComponent:0];
         self.currentXianArr = self.xianArr[aleadyChooseProvinceIndex][row];
+        [self.pickView selectRow:0 inComponent:2 animated:YES];
         [self.pickView reloadComponent:component+1];
     }
     
