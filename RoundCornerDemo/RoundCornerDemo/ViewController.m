@@ -12,6 +12,7 @@
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)NSArray * dataSourceArr;
+@property(nonatomic,strong)NSArray * descSourceArr;
 
 @end
 
@@ -23,6 +24,9 @@
     self.title = @"N种设置圆角的方式";
     NSArray * dataSourceArr = @[@"方式1",@"方式2",@"方式3",@"方式4",@"方式5",@"方式6"];
     self.dataSourceArr = dataSourceArr;
+    NSArray * descSourceArr = @[@"设置cornerRadius和masksToBounds",@"如何实现的描述",@"如何实现的描述",@"如何实现的描述",@"如何实现的描述",@"如何实现的描述"];
+    self.descSourceArr = descSourceArr;
+    
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-100) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -39,7 +43,7 @@
     NSString * reuseIdentifierSte = @"cell";
     UITableViewCell * cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifierSte];
     [cell.textLabel setText:self.dataSourceArr[indexPath.row]];
-    [cell.detailTextLabel setText:@"如何实现的描述"];
+    [cell.detailTextLabel setText:self.descSourceArr[indexPath.row]];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
