@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--BlurPresention-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="BlurPresention" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_1599" translatesAutoresizingMaskIntoConstraints="NO" id="1ep-m0-xgI">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uzr-8G-XFp">
+                                <rect key="frame" x="50" y="530" width="100" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Gfb-iD-bUo"/>
+                                    <constraint firstAttribute="width" constant="100" id="PDS-TO-a5v"/>
+                                </constraints>
+                                <state key="normal" title="Present Light"/>
+                                <connections>
+                                    <segue destination="ZgO-xT-ZM7" kind="presentation" identifier="showLight" id="XCR-lx-MG9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nP6-Y8-bj9">
+                                <rect key="frame" x="450" y="530" width="100" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5fh-U9-5kp"/>
+                                    <constraint firstAttribute="width" constant="100" id="hu3-A0-Nbl"/>
+                                </constraints>
+                                <state key="normal" title="Present Dark"/>
+                                <connections>
+                                    <segue destination="ZgO-xT-ZM7" kind="presentation" identifier="showDark" id="wSh-GL-dxE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aws-rF-yAo">
+                                <rect key="frame" x="27" y="54" width="100" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="J1d-ew-HSc"/>
+                                    <constraint firstAttribute="height" constant="50" id="YQU-rV-bT4"/>
+                                </constraints>
+                                <state key="normal" title="Present Light"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NjZ-V6-DtA">
+                                <rect key="frame" x="167" y="140" width="240" height="128"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NO7-wN-jt9">
+                                <rect key="frame" x="192" y="114" width="65" height="38"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1ep-m0-xgI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4FL-Wy-2xN"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Uzr-8G-XFp" secondAttribute="bottom" constant="20" id="4GM-dM-6oN"/>
+                            <constraint firstAttribute="trailing" secondItem="nP6-Y8-bj9" secondAttribute="trailing" constant="50" id="99J-xD-wEv"/>
+                            <constraint firstAttribute="trailing" secondItem="1ep-m0-xgI" secondAttribute="trailing" id="BPj-mQ-d8D"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nP6-Y8-bj9" secondAttribute="bottom" constant="20" id="FdS-aH-DDC"/>
+                            <constraint firstItem="1ep-m0-xgI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Ol7-Gx-Nh2"/>
+                            <constraint firstAttribute="trailing" secondItem="1ep-m0-xgI" secondAttribute="trailing" id="RDB-nc-0XO"/>
+                            <constraint firstItem="1ep-m0-xgI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="W23-xj-Mzz"/>
+                            <constraint firstItem="1ep-m0-xgI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kYb-0Z-y5X"/>
+                            <constraint firstItem="Uzr-8G-XFp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="mc2-bH-DEy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1ep-m0-xgI" secondAttribute="bottom" id="vbr-nu-igo"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Aws-rF-yAo"/>
+                                <exclude reference="NjZ-V6-DtA"/>
+                                <exclude reference="NO7-wN-jt9"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-474" y="625"/>
+        </scene>
+        <!--Presented View Controller-->
+        <scene sceneID="Vrb-el-2Nk">
+            <objects>
+                <viewController id="ZgO-xT-ZM7" customClass="PresentedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eCQ-Ml-MTk"/>
+                        <viewControllerLayoutGuide type="bottom" id="tjm-wT-HAI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7iu-d9-tQG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lhh-1h-f0V">
+                                <rect key="frame" x="220" y="220" width="160" height="160"/>
+                                <state key="normal" image="Accept"/>
+                                <connections>
+                                    <action selector="dismissClicked:" destination="ZgO-xT-ZM7" eventType="touchUpInside" id="ee6-7n-deO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lhh-1h-f0V" firstAttribute="centerX" secondItem="7iu-d9-tQG" secondAttribute="centerX" id="RaB-EQ-drw"/>
+                            <constraint firstItem="Lhh-1h-f0V" firstAttribute="centerY" secondItem="7iu-d9-tQG" secondAttribute="centerY" id="cSS-c9-UdZ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ml3-4S-VOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="217" y="625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Accept" width="160" height="160"/>
+        <image name="IMG_1599" width="440" height="438"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XCR-lx-MG9"/>
+    </inferredMetricsTieBreakers>
+</document>
