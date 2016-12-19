@@ -38,7 +38,7 @@
     tableView.dataSource = self;
     tableView.tableFooterView = [[UIView alloc] init];
     [self.view addSubview:tableView];
-    UILabel * descLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height-120, [UIScreen mainScreen].bounds.size.width, 30)];
+    UILabel * descLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, [UIScreen mainScreen].bounds.size.height-80, [UIScreen mainScreen].bounds.size.width-40, 80)];
     descLabel.numberOfLines = 0;
     [descLabel setText:@"图片大小和collectionView的Item大小一样的，避免了布局，项目中肯定需要布局"];
     [self.view addSubview:descLabel];

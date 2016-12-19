@@ -7,13 +7,15 @@
 //
 
 #import "PerformanceViewController.h"
+#import "YYFPSLabel.h"
+
 #define IMAGEWidth 80
 #define IMAGEHeight 80
 
 #define ITEMWidth
 #define ITEMHeight
 @interface PerformanceViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
-
+@property (nonatomic, strong) YYFPSLabel *fpsLabel;
 @end
 
 @implementation PerformanceViewController
@@ -22,10 +24,15 @@
     [super viewDidLoad];
     self.title = @"圆角效果";
     
+    [self addCollectionView];
+    [self addFPSLabel];
+}
+#pragma mark - 添加collectionView
+-(void)addCollectionView{
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
-//    layout.itemSize = [self getItemSize];
+    //    layout.itemSize = [self getItemSize];
     layout.itemSize = [self getImageSize];
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
     NSString * kIdentifier = @"collectionView";
@@ -35,6 +42,12 @@
     collectionView.delegate = self;
     collectionView.dataSource = self;
     [self.view addSubview:collectionView];
+}
+#pragma mark - 添加FPSLabel
+-(void)addFPSLabel{
+    _fpsLabel = [[YYFPSLabel alloc] initWithFrame:CGRectMake(200, 200, 50, 30)];
+    [_fpsLabel sizeToFit];
+    [self.view addSubview:_fpsLabel];
 }
 -(CGSize)getScreenSize{
     return [UIScreen mainScreen].bounds.size;
@@ -56,7 +69,7 @@
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return 80;
+    return 380;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     

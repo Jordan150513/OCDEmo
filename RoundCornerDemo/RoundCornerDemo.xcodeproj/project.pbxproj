@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DCEB3CE91E078C6B00E86676 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEB3CE61E078C6B00E86676 /* YYFPSLabel.m */; };
+		DCEB3CEA1E078C6B00E86676 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEB3CE81E078C6B00E86676 /* YYWeakProxy.m */; };
 		DCFAF5731E03CB4A00A89204 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFAF5721E03CB4A00A89204 /* main.m */; };
 		DCFAF5761E03CB4A00A89204 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFAF5751E03CB4A00A89204 /* AppDelegate.m */; };
 		DCFAF5791E03CB4A00A89204 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFAF5781E03CB4A00A89204 /* ViewController.m */; };
@@ -40,6 +42,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DCEB3CE51E078C6B00E86676 /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		DCEB3CE61E078C6B00E86676 /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		DCEB3CE71E078C6B00E86676 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
+		DCEB3CE81E078C6B00E86676 /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
 		DCFAF56E1E03CB4A00A89204 /* RoundCornerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoundCornerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFAF5721E03CB4A00A89204 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCFAF5741E03CB4A00A89204 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +95,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DCEB3CE41E078C6B00E86676 /* YYFPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				DCEB3CE51E078C6B00E86676 /* YYFPSLabel.h */,
+				DCEB3CE61E078C6B00E86676 /* YYFPSLabel.m */,
+				DCEB3CE71E078C6B00E86676 /* YYWeakProxy.h */,
+				DCEB3CE81E078C6B00E86676 /* YYWeakProxy.m */,
+			);
+			path = YYFPSLabel;
+			sourceTree = "<group>";
+		};
 		DCFAF5651E03CB4A00A89204 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +129,7 @@
 		DCFAF5701E03CB4A00A89204 /* RoundCornerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DCEB3CE41E078C6B00E86676 /* YYFPSLabel */,
 				DCFAF5B31E03E06100A89204 /* AppIcon57x57@2x.png */,
 				DCFAF5B41E03E06100A89204 /* AppIcon60x60@2x.png */,
 				DCFAF5AF1E03E04100A89204 /* cover@2x.png */,
@@ -298,6 +316,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCFAF5791E03CB4A00A89204 /* ViewController.m in Sources */,
+				DCEB3CE91E078C6B00E86676 /* YYFPSLabel.m in Sources */,
+				DCEB3CEA1E078C6B00E86676 /* YYWeakProxy.m in Sources */,
 				DCFAF5761E03CB4A00A89204 /* AppDelegate.m in Sources */,
 				DCFAF5731E03CB4A00A89204 /* main.m in Sources */,
 				DCFAF5A61E03CF4300A89204 /* PerformanceViewController.m in Sources */,
@@ -538,6 +558,7 @@
 				DCFAF59D1E03CB4A00A89204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCFAF59E1E03CB4A00A89204 /* Build configuration list for PBXNativeTarget "RoundCornerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +567,7 @@
 				DCFAF5A01E03CB4A00A89204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCFAF5A11E03CB4A00A89204 /* Build configuration list for PBXNativeTarget "RoundCornerDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +576,7 @@
 				DCFAF5A31E03CB4A00A89204 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
