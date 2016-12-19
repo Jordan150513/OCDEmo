@@ -1,0 +1,20 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '8.0'
+# Uncomment this line if you're using Swift
+# use_frameworks!
+
+target '暴力破解数独' do
+
+pod 'PureLayout'
+pod 'Masonry'
+
+end
+
+target '暴力破解数独Tests' do
+
+end
+
+target '暴力破解数独UITests' do
+
+end
+
