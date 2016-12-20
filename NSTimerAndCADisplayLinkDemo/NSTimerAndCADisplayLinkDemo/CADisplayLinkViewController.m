@@ -9,7 +9,6 @@
 #import "CADisplayLinkViewController.h"
 
 @interface CADisplayLinkViewController ()
-//@property (nonatomic, weak) IBOutlet UIView *containerView;
 @property(nonatomic,strong)UIView * containerView;
 @property (nonatomic, strong) UIImageView *ballView;
 @property (nonatomic, strong) CADisplayLink *timer;
@@ -24,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.title = @"CADisplayLink";
     
     _containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 500)];
@@ -40,9 +39,9 @@
 
 - (void)animate2
 {
-    //reset ball to top of screen
+    //设置初始位置
     self.ballView.center = CGPointMake(150, 32);
-    //configure the animation
+    //配置animation参数
     self.duration = 1.0;
     self.timeOffset = 0.0;
     self.fromValue = [NSValue valueWithCGPoint:CGPointMake(150, 32)];
@@ -55,6 +54,9 @@
                                              selector:@selector(step2:)];
     [self.timer addToRunLoop:[NSRunLoop mainRunLoop]
                      forMode:NSDefaultRunLoopMode];
+                      //NSDefaultRunLoopMode---标准优先级
+                      //NSRunLoopCommonModes---高优先级
+                      //UITrackingRunLoopMode---用于UIScrollView和别的控件的动画
 }
 
 - (void)step2:(CADisplayLink *)timer
@@ -69,12 +71,12 @@
     float time = self.timeOffset / self.duration;
     //apply easing
     time = bounceEaseOut2(time);
-    //interpolate position
+    //插入位置
     id position = [self interpolate2FromValue:self.fromValue toValue:self.toValue
                                         time:time];
-    //move ball view to new position
+    //移动到新位置
     self.ballView.center = [position CGPointValue];
-    //stop the timer if we've reached the end of the animation
+    //已经执行外全部动画
     if (self.timeOffset >= self.duration) {
         [self.timer invalidate];
         self.timer = nil;
@@ -96,7 +98,7 @@
     //provide safe default implementation
     return (time < 0.5)? fromValue: toValue;
 }
-
+//计算渐进时间
 float bounceEaseOut2(float t)
 {
     if (t < 4/11.0) {
