@@ -45,7 +45,10 @@
     _link = [CADisplayLink displayLinkWithTarget:[YYWeakProxy proxyWithTarget:self] selector:@selector(tick:)];
 //    __weak typeof(self) weakSelf = self;
 //    _link = [CADisplayLink displayLinkWithTarget:weakSelf selector:@selector(tick:)];
-    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes]; 
+                                        //NSDefaultRunLoopMode - 标准优先级
+                                        //NSRunLoopCommonModes - 高优先级
+                                        //UITrackingRunLoopMode - 用于UIScrollView和别的控件的动画
     return self;
 }
 
