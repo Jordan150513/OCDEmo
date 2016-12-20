@@ -15,6 +15,7 @@
 		DCB095741E090A5800D1E0BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB095721E090A5800D1E0BE /* LaunchScreen.storyboard */; };
 		DCB0957F1E090A5800D1E0BE /* GCDDemosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB0957E1E090A5800D1E0BE /* GCDDemosTests.m */; };
 		DCB0958A1E090A5800D1E0BE /* GCDDemosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB095891E090A5800D1E0BE /* GCDDemosUITests.m */; };
+		DCB095991E092AD300D1E0BE /* DemoTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB095981E092AD300D1E0BE /* DemoTwoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		DCB095851E090A5800D1E0BE /* GCDDemosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCDDemosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB095891E090A5800D1E0BE /* GCDDemosUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCDDemosUITests.m; sourceTree = "<group>"; };
 		DCB0958B1E090A5800D1E0BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCB095971E092AD300D1E0BE /* DemoTwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTwoViewController.h; sourceTree = "<group>"; };
+		DCB095981E092AD300D1E0BE /* DemoTwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTwoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				DCB095721E090A5800D1E0BE /* LaunchScreen.storyboard */,
 				DCB095751E090A5800D1E0BE /* Info.plist */,
 				DCB095641E090A5800D1E0BE /* Supporting Files */,
+				DCB095971E092AD300D1E0BE /* DemoTwoViewController.h */,
+				DCB095981E092AD300D1E0BE /* DemoTwoViewController.m */,
 			);
 			path = GCDDemos;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCB095991E092AD300D1E0BE /* DemoTwoViewController.m in Sources */,
 				DCB0956C1E090A5800D1E0BE /* ViewController.m in Sources */,
 				DCB095691E090A5800D1E0BE /* AppDelegate.m in Sources */,
 				DCB095661E090A5800D1E0BE /* main.m in Sources */,

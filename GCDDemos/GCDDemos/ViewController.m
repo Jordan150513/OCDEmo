@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "DemoTwoViewController.h"
 
 @interface ViewController ()
 @property(nonatomic,assign)NSInteger sum;
@@ -57,6 +58,18 @@
     _sumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, [UIScreen mainScreen].bounds.size.width, 50)];
     [_sumLabel setText:@"0"];
     [self.view addSubview:_sumLabel];
+    
+    UIButton * nextDemoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [nextDemoBtn setTitle:@"demo2" forState:UIControlStateNormal];
+    [nextDemoBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [nextDemoBtn setFrame:CGRectMake(0, 200, 200, 50)];
+    [nextDemoBtn addTarget:self action:@selector(jumpToNext) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextDemoBtn];
+}
+#pragma mark - 跳转到第二个demo
+-(void)jumpToNext{
+    DemoTwoViewController * twoVC = [[DemoTwoViewController alloc] init];
+    [self.navigationController pushViewController:twoVC animated:YES];
 }
 #pragma mark - 适合异步抛给后台做的事情
 -(void)goDoSomethingLongAndInvolved{
