@@ -21,8 +21,17 @@
     [self createLabel];
     self.title = @"GCDDemos";
     
+    [self toDoAddJob];
+    
+}
+#pragma mark - 为了实现累加，添加可以第二，n次累加功能
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self toDoAddJob];
+}
+//将操作1提取出来，方便重复操作
+-(void)toDoAddJob{
     //1.提交 Job
-                                            //优先级为Default
+    //优先级为Default
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //global_queue会在轮到这个block执行时执行这里的代码
         [self goDoSomethingLongAndInvolved];
@@ -30,7 +39,6 @@
     });
     //dispatch_async 函数会立即返回, block会在后台异步执行。所以后面的代码跟block里面的代码的执行顺序不确定
     NSLog(@"dispatch_async后面的任务");
-    
     
     //2.使用嵌套的dispatch，异步抛任务给后台执行，后台异步执行完任务之后，dispatch回到main queue，执行更新UI
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -43,10 +51,6 @@
             [self.sumLabel setText:[NSString stringWithFormat:@"%ld",self.sum]];
         });
     });
-    
-    
-    
-    
 }
 #pragma mark - createLabel
 -(void)createLabel{
@@ -69,7 +73,9 @@
         NSLog(@"实现累加上次结果的功能");
     });
     //这个实现有阻塞了后台的线程
+    NSLog(@"%ld",sum);
     sum = sum + stringValue.integerValue;
+     NSLog(@"%ld",sum);
     self.sum = sum;
 }
 /*
