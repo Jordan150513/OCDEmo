@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC8B88151E0B72BB00A501F2 /* NSArray+SHSafeObjectAtIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8B88141E0B72BB00A501F2 /* NSArray+SHSafeObjectAtIndex.m */; };
 		DCB095661E090A5800D1E0BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB095651E090A5800D1E0BE /* main.m */; };
 		DCB095691E090A5800D1E0BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB095681E090A5800D1E0BE /* AppDelegate.m */; };
 		DCB0956C1E090A5800D1E0BE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB0956B1E090A5800D1E0BE /* ViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC8B88131E0B72BB00A501F2 /* NSArray+SHSafeObjectAtIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SHSafeObjectAtIndex.h"; sourceTree = "<group>"; };
+		DC8B88141E0B72BB00A501F2 /* NSArray+SHSafeObjectAtIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SHSafeObjectAtIndex.m"; sourceTree = "<group>"; };
 		DCB095611E090A5800D1E0BE /* GCDDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCDDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB095651E090A5800D1E0BE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCB095671E090A5800D1E0BE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				DCB095641E090A5800D1E0BE /* Supporting Files */,
 				DCB095971E092AD300D1E0BE /* DemoTwoViewController.h */,
 				DCB095981E092AD300D1E0BE /* DemoTwoViewController.m */,
+				DC8B88131E0B72BB00A501F2 /* NSArray+SHSafeObjectAtIndex.h */,
+				DC8B88141E0B72BB00A501F2 /* NSArray+SHSafeObjectAtIndex.m */,
 			);
 			path = GCDDemos;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			files = (
 				DCB095991E092AD300D1E0BE /* DemoTwoViewController.m in Sources */,
 				DCB0956C1E090A5800D1E0BE /* ViewController.m in Sources */,
+				DC8B88151E0B72BB00A501F2 /* NSArray+SHSafeObjectAtIndex.m in Sources */,
 				DCB095691E090A5800D1E0BE /* AppDelegate.m in Sources */,
 				DCB095661E090A5800D1E0BE /* main.m in Sources */,
 			);
@@ -524,6 +530,7 @@
 				DCB095901E090A5800D1E0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCB095911E090A5800D1E0BE /* Build configuration list for PBXNativeTarget "GCDDemosTests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +539,7 @@
 				DCB095931E090A5800D1E0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCB095941E090A5800D1E0BE /* Build configuration list for PBXNativeTarget "GCDDemosUITests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +548,7 @@
 				DCB095961E090A5800D1E0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

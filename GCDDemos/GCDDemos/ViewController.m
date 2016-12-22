@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DemoTwoViewController.h"
+#import "NSArray+SHSafeObjectAtIndex.h"
 
 @interface ViewController ()
 @property(nonatomic,assign)NSInteger sum;
@@ -23,6 +24,13 @@
     self.title = @"GCDDemos";
     
     [self toDoAddJob];
+    
+    
+    NSMutableArray * arrayTest = [@[@"1",@"2"] mutableCopy];
+    [arrayTest removeObjectAtIndex:0];
+//    NSString * str = [arrayTest objectAtIndex:0];
+    NSString * str2 = [arrayTest safeObjectAtIndex:0];
+    
     
 }
 #pragma mark - 为了实现累加，添加可以第二，n次累加功能
