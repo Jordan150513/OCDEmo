@@ -23,6 +23,14 @@
     
     NSString * requestURL = @"http://119.254.98.136/api/v1/web/homepage";
     
+    NSMutableArray * arr = [NSMutableArray array];
+    NSString * nilStr = nil;
+//    [arr addObject:nilStr];
+    //往数组中添加nil，会引起崩溃，项目中需要容错
+    
+    
+    
+    
 //    AFHTTPSessionManager * manager =[[AFHTTPSessionManager alloc] init];
     AFHTTPSessionManager * manager =[AFHTTPSessionManager manager];
     [manager GET:requestURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
