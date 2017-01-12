@@ -35,8 +35,6 @@
     AFHTTPSessionManager * manager =[AFHTTPSessionManager manager];
     [manager GET:requestURL parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          NSLog(@"请求成功了！");
-        AssociatedObjectViewController * vc = [[AssociatedObjectViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"请求失败了！");
@@ -45,7 +43,10 @@
     
     
 }
-
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    AssociatedObjectViewController * vc = [[AssociatedObjectViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

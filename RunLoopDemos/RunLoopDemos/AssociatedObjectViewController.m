@@ -10,6 +10,13 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#import "NSObject+DDCategory.h"
+
+#ifndef __OPTIMIZE__
+
+#define NSLog(...) printf("%f %s %ld :%s\n",[[NSDate date]timeIntervalSince1970],strrchr(__FILE__,'/'),[[NSNumber numberWithInt:__LINE__] integerValue],[[NSString stringWithFormat:__VA_ARGS__]UTF8String]);
+
+#endif
 
 @interface AssociatedObjectViewController ()
 @property (nonatomic, assign) BOOL disabledDD;
@@ -25,15 +32,18 @@
     [button setFrame:CGRectMake(100, 100, 100, 50)];
     [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-   
-}
--(void)setDisabledDD:(BOOL)disabledDD{
-    objc_setAssociatedObject(self, @selector(disabledDD), @(disabledDD), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    //    OS_OBJECT_CLASS_IMPLEMENTS_PROTOCOL_IMPL(<#name#>, <#proto#>)
-}
-
--(BOOL)disabledDD{
-    return [objc_getAssociatedObject(self, _cmd) boolValue];
+    
+    NSObject * objInstance = [[NSObject alloc] init];
+    objInstance.nameStr = @"qiao";
+    NSLog(@"----%@",[objInstance nameStr]);
+    NSLog(@"----为啥没有出来？？？？？？？？");
+    //NSLog 为什么会失效？？换成了c的printf才打印出来？？需要找到原因。。。。
+    //(lldb) po objInstance.nameStr
+    //error: property 'nameStr' not found on object of type 'NSObject *'
+    //(lldb) po [objInstance nameStr]
+    //qiao
+    //(lldb) po _nameStr
+    //error: use of undeclared identifier '_nameStr'
 }
 
 -(void)click:(UIButton *)button{
