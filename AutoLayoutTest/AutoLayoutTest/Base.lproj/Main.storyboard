@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAV-rz-hYc" userLabel="Button1">
+                                <color key="backgroundColor" red="1" green="0.1455676954" blue="0.17305853630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Yxq-KO-Lat"/>
+                                    <constraint firstAttribute="width" constant="50" id="eUc-jk-0Pk"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znl-Lx-b0c" userLabel="Button3">
+                                <color key="backgroundColor" red="1" green="0.1455676954" blue="0.17305853630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgt-I5-cy6" userLabel="Button2">
+                                <color key="backgroundColor" red="1" green="0.1455676954" blue="0.17305853630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Znl-Lx-b0c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="3:2" constant="12.5" id="9Dc-hS-F3V"/>
+                            <constraint firstItem="Hgt-I5-cy6" firstAttribute="height" secondItem="cAV-rz-hYc" secondAttribute="height" id="9lU-g4-Bcc"/>
+                            <constraint firstItem="Hgt-I5-cy6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Fqp-4H-wXj"/>
+                            <constraint firstItem="Hgt-I5-cy6" firstAttribute="width" secondItem="cAV-rz-hYc" secondAttribute="width" id="Ml6-7e-6WI"/>
+                            <constraint firstItem="Znl-Lx-b0c" firstAttribute="width" secondItem="cAV-rz-hYc" secondAttribute="width" id="NNx-pf-0jJ"/>
+                            <constraint firstItem="Znl-Lx-b0c" firstAttribute="height" secondItem="cAV-rz-hYc" secondAttribute="height" id="cmF-RF-Dx9"/>
+                            <constraint firstItem="cAV-rz-hYc" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gY2-cu-71g"/>
+                            <constraint firstItem="Znl-Lx-b0c" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="i79-TO-DOL"/>
+                            <constraint firstItem="Hgt-I5-cy6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sYi-Oo-lTh"/>
+                            <constraint firstItem="cAV-rz-hYc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1:2" constant="-12.5" id="uDP-Pm-3eS"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="136.28185907046478"/>
+        </scene>
+    </scenes>
+</document>
