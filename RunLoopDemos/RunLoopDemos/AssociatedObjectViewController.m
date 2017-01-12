@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import "NSObject+DDCategory.h"
+#import "NSObject_DDNSObjectExtension.h"
 
 #ifndef __OPTIMIZE__
 
@@ -44,20 +45,28 @@
     //qiao
     //(lldb) po _nameStr
     //error: use of undeclared identifier '_nameStr'
+    
+    
+//    NSLog(@"----%@",objInstance.nameStrExt);
+    /*
+     (lldb) po objInstance.nameStrExt
+     error: property 'nameStrExt' not found on object of type 'NSObject *'
+     (lldb) po [objInstance nameStrExt]
+     error: Execution was interrupted, reason: Attempted to dereference an invalid ObjC Object or send it an unrecognized selector.
+     The process has been returned to the state before expression evaluation.
+     (lldb)
+     */
+    
 }
 
 -(void)click:(UIButton *)button{
     NSLog(@"button 点击了");
     
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+@end
 
+//私有的扩展？？？为啥没有起作用呢？？？？私有到什么程度，只能自己扩展类内部访问？？
+@interface NSObject ()
+@property(nonatomic,strong) NSString * nameStrExtPrivate;
 @end

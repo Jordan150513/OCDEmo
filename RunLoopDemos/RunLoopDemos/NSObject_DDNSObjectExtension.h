@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject ()
-
+@property(nonatomic,strong)NSString * nameStrExt;
 @end
