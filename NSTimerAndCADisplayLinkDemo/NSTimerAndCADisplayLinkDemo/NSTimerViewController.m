@@ -9,7 +9,6 @@
 #import "NSTimerViewController.h"
 
 @interface NSTimerViewController ()
-//@property (nonatomic, weak) IBOutlet UIView *containerView;
 @property (nonatomic,strong) UIView * containerView;
 @property (nonatomic, strong) UIImageView *ballView;
 @property (nonatomic, strong) NSTimer *timer;
@@ -37,16 +36,16 @@
 }
 
 -(void)animate{
-    //reset ball to top of screen
+    //设置起点
     self.ballView.center = CGPointMake(150, 32);
-    //configure the animation
+    //animation参数配置
     self.duration = 1.0;
     self.timeOffset = 0.0;
     self.fromValue = [NSValue valueWithCGPoint:CGPointMake(150, 32)];
     self.toValue = [NSValue valueWithCGPoint:CGPointMake(150, 268)];
     //stop the timer if it's already running
     [self.timer invalidate];
-    //start the timer
+    //start the timer，每隔1/60 S就会执行一次@selector(step:)
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1/60.0
                                                   target:self
                                                 selector:@selector(step:)
@@ -54,16 +53,16 @@
                                                  repeats:YES];
 
 }
-
+#pragma mark - 每隔1/60s就会执行一次
 - (void)step:(NSTimer *)step
 {
     //update time offset
     self.timeOffset = MIN(self.timeOffset + 1/60.0, self.duration);
     //get normalized time offset (in range 0 - 1)
     float time = self.timeOffset / self.duration;
-    //apply easing
+    //移动时间
     time = bounceEaseOut(time);
-    //interpolate position
+    //计算插入位置
     id position = [self interpolateFromValue:self.fromValue
                                      toValue:self.toValue
                                         time:time];
@@ -92,7 +91,7 @@
     //provide safe default implementation
     return (time < 0.5)? fromValue: toValue;
 }
-
+//计算渐进时间
 float bounceEaseOut(float t)
 {
     if (t < 4/11.0) {
@@ -110,7 +109,7 @@ float bounceEaseOut(float t)
     //replay animation on tap
     [self animate];
 }
-
+//插入
 float interpolate(float from, float to, float time)
 {
     return (to - from) * time + from;
