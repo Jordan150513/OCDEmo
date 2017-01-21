@@ -66,6 +66,7 @@ static NSString * const urlString = @"http://119.254.98.136/api/v1/web/homepage"
     NSURLSession * session = [NSURLSession sharedSession];
     
     NSURLSessionDownloadTask * task = [session downloadTaskWithURL:[NSURL URLWithString:@"http://127.0.0.1/dawenjian.zip"] completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
         NSString * path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"kkk.dmg"];
         NSURL * documentUrl = [NSURL fileURLWithPath:path];
         [[NSFileManager defaultManager] moveItemAtURL:location toURL:documentUrl error:nil];
@@ -129,13 +130,12 @@ static NSString * const urlString = @"http://119.254.98.136/api/v1/web/homepage"
 -(void)requestDownLoadAFN{
     
     AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-//    [manager downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] progress:^(NSProgress * _Nonnull downloadProgress) {
-//        
-//    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
-//        
-//    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
-//        
-//    }];
+    [manager downloadTaskWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]] progress:nil destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSURL *dirURL  = [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
+        return [dirURL URLByAppendingPathComponent:@"t1.file"];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        NSLog(@"done!");
+    }];
     
 }
 
