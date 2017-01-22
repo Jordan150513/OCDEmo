@@ -45,13 +45,23 @@ static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploa
     [self.view addSubview:imageView];
     
     
-//gif图片    UIImageView是不支持gif，FLAnimagedImageView支持gif
+//gif图片
+    // sd UIImageView是不支持gif，sd中 UIImage (GIF)做了简单的扩展 支持gif
+
+//    UIImage * image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif] options:NSDataReadingMappedIfSafe error:nil]];
+    UIImage * image = [[UIImage alloc] init];
+    UIImageView * gifImageView = [[UIImageView alloc] initWithImage:image];
+    [image sd_animatedImageByScalingAndCroppingToSize:CGSizeMake(80, 80)];
+//    [image sd_animatedGIFWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
+    [self.view addSubview:gifImageView];
     
-    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
-    FLAnimatedImageView *imageViewFL = [[FLAnimatedImageView alloc] init];
-    imageViewFL.animationImages = image;
-    imageViewFL.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
-    [self.view addSubview:imageViewFL];
+    //FLAnimagedImageView
+    
+//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
+//    FLAnimatedImageView *imageViewFL = [[FLAnimatedImageView alloc] init];
+//    imageViewFL.animationImages = image;
+//    imageViewFL.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
+//    [self.view addSubview:imageViewFL];
     
 }
 
