@@ -5,6 +5,7 @@
 
 target 'QSDWebImageDemo' do
  pod 'SDWebImage', '~> 3.8.1'
+ pod 'FLAnimatedImage', '~> 1.0'
 end
 
 target 'QSDWebImageDemoTests' do

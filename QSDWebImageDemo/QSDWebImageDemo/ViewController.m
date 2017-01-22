@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import <SDWebImage/UIImageView+WebCache.h>
-
+#import <SDWebImage/UIImage+GIF.h>
+#import <FLAnimatedImage/FLAnimatedImageView.h>
+#import <FLAnimatedImage.h>
 
 /*
  UIImage (GIF)中的三个方法：
@@ -36,14 +37,22 @@ static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploa
     
     //一般图片
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 80, 80)];
-//    [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        NSLog(@"done");
-    }];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//    [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+//        NSLog(@"done");
+//    }];
 //    [imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringpng]]]];
     [self.view addSubview:imageView];
     
-
+    
+//gif图片    UIImageView是不支持gif，FLAnimagedImageView支持gif
+    
+    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
+    FLAnimatedImageView *imageViewFL = [[FLAnimatedImageView alloc] init];
+    imageViewFL.animationImages = image;
+    imageViewFL.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
+    [self.view addSubview:imageViewFL];
+    
 }
 
 
