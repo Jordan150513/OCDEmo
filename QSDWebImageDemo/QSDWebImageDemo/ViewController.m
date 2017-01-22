@@ -36,36 +36,44 @@ static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploa
     [super viewDidLoad];
     self.title = @"SDWeb Demo";
     
-    //一般图片
-    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 80, 80)];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-//    [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        NSLog(@"done");
-//    }];
-//    [imageView setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringpng]]]];
-    [self.view addSubview:imageView];
+    //sd 实现普通图片
+    [self commonImage];
     
-    
-//gif图片
-    // sd UIImageView是不支持gif，sd中 UIImage (GIF)做了简单的扩展 支持gif
+    //sd实现gif
+    [self gifImage];
 
-    UIImage * image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif2] options:NSDataReadingMappedIfSafe error:nil]];
-    UIImageView * gifImageView = [[UIImageView alloc] initWithImage:image];
-    [image sd_animatedImageByScalingAndCroppingToSize:CGSizeMake(80, 80)];
-//    [image sd_animatedGIFWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
-    [self.view addSubview:gifImageView];
-    
-    //FLAnimagedImageView
-    
-//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif2]]];
-//    FLAnimatedImageView *imageViewFL = [[FLAnimatedImageView alloc] init];
-//    imageViewFL.animationImages = [NSArray arrayWithObject:image];
-//    imageViewFL.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
-//    [self.view addSubview:imageViewFL];
+//    //FL实现gif，还有问题
+//    [self FLImage];
     
 }
 
+-(void)commonImage{
+    //一般图片
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 80, 80)];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.view addSubview:imageView];
+}
 
+-(void)gifImage{
+    //gif图片
+    // sd UIImageView是不支持gif，sd中 UIImage (GIF)做了简单的扩展 支持gif
+        UIImage * image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif2] options:NSDataReadingMappedIfSafe error:nil]];
+        UIImageView * gifImageView = [[UIImageView alloc] initWithImage:image];
+//       [gifImageView setFrame:CGRectMake(100, 200, 80, 80)];
+        [image sd_animatedImageByScalingAndCroppingToSize:CGSizeMake(80, 80)];
+    //    [image sd_animatedGIFWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
+        [self.view addSubview:gifImageView];
+}
+
+-(void)FLImage{
+    //FLAnimagedImageView
+    
+    //    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif2]]];
+    //    FLAnimatedImageView *imageViewFL = [[FLAnimatedImageView alloc] init];
+    //    imageViewFL.animationImages = [NSArray arrayWithObject:image];
+    //    imageViewFL.frame = CGRectMake(100.0, 200.0, 100.0, 100.0);
+    //    [self.view addSubview:imageViewFL];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
