@@ -22,7 +22,8 @@
  - (UIImage *)sd_animatedImageByScalingAndCroppingToSize:(CGSize)size;
  */
 
-static NSString * urlStringgif = @"https://img2.soufun.com/bbsv2/face/em016.gif";
+static NSString * urlStringgif = @"https://img2.soufun.com/bbsv2/face/em016.gif";//需要配置证书
+static NSString * urlStringgif2 = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploads/images/38/B23B980EFC9F27338390F6B5635F4CAA";
 static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploads/images/100/803C68E5FA7D8EBE7CCE498C0D1223C8";
 
 @interface ViewController ()
@@ -48,8 +49,7 @@ static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploa
 //gif图片
     // sd UIImageView是不支持gif，sd中 UIImage (GIF)做了简单的扩展 支持gif
 
-//    UIImage * image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif] options:NSDataReadingMappedIfSafe error:nil]];
-    UIImage * image = [[UIImage alloc] init];
+    UIImage * image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif2] options:NSDataReadingMappedIfSafe error:nil]];
     UIImageView * gifImageView = [[UIImageView alloc] initWithImage:image];
     [image sd_animatedImageByScalingAndCroppingToSize:CGSizeMake(80, 80)];
 //    [image sd_animatedGIFWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
@@ -57,9 +57,9 @@ static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploa
     
     //FLAnimagedImageView
     
-//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif]]];
+//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:urlStringgif2]]];
 //    FLAnimatedImageView *imageViewFL = [[FLAnimatedImageView alloc] init];
-//    imageViewFL.animationImages = image;
+//    imageViewFL.animationImages = [NSArray arrayWithObject:image];
 //    imageViewFL.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
 //    [self.view addSubview:imageViewFL];
     
