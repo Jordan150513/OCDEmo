@@ -24,15 +24,32 @@
     //排序
     // 1、快速排序
     NSArray * array = [NSArray arrayWithObjects:@7,@1,@14,@8,@88,@9,@67,@34,@9,@77,@4, nil];
-    [self quickSort:array];
+//    [self quickSort:array];
     // 2、冒泡排序
+//    [self bubbleSort:array];
     
-    //
 }
 
 #pragma mark - 冒泡排序
 -(void)bubbleSort:(NSArray *)array{
-
+    NSMutableArray * operateArray = [array mutableCopy];
+    NSLog(@"原始数组：%@",operateArray);
+    for (NSInteger i = 0; i<operateArray.count; i++) {
+        
+        NSInteger  minIndex = i;
+        for (NSInteger j = i; j<operateArray.count; j++) {
+            //找到最小的
+            if ([operateArray[j] integerValue] < [operateArray[minIndex] integerValue]) {
+                minIndex = j;
+            }
+            
+        }
+        NSInteger tmpValue = [operateArray[i] integerValue];
+        [operateArray replaceObjectAtIndex:i withObject:operateArray[minIndex]];
+        [operateArray replaceObjectAtIndex:minIndex withObject:@(tmpValue)];
+        NSLog(@"一次冒泡-array:%@",operateArray);
+    }
+    NSLog(@"冒泡排序结束：%@",operateArray);
 }
 
 #pragma mark - 快速排序--时间复杂度---空间复杂度---初始版本，写的不好，应该是在同一个NSMutableArray中进行操作，不能开辟这个多resultArray
@@ -87,18 +104,15 @@
             NSLog(@"%@",array);
         }
     }
-    //    indexTrail==indexHead
     //将基准放置合适的位置完成一次快排
     [array replaceObjectAtIndex:tmp withObject:@(tmpValue)];
     NSLog(@"完成一次快排-resultArray：%@",array);
     if (tmp-fromIndex>1) {
         //对左边进行快排
-//        [self quickSort:[array subarrayWithRange:NSMakeRange(0, tmp)]];
         [self quickSortWithArray:array fromIndex:fromIndex toIndex:tmp-1];
     }
     if(toIndex-tmp>1){
         //对右边进行快排
-//        [self quickSort:[array subarrayWithRange:NSMakeRange(tmp+1, array.count-tmp-1)]];
         [self quickSortWithArray:array fromIndex:tmp+1 toIndex:toIndex];
     }
     return 1;
