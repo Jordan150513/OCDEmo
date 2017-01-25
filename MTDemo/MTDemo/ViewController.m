@@ -34,41 +34,56 @@
 -(void)quickSort:(NSArray *)array{
     
     NSMutableArray * resultArray = [array mutableCopy];
-    NSLog(@"resultArray:%@",resultArray);
+    NSLog(@"原始待排序的数组-resultArray:%@",resultArray);
     NSInteger indexTrail = resultArray.count-1;
     NSInteger indexHead = 1;
-    NSInteger tmp = 0;
-    NSInteger tmpValue = [resultArray[tmp] integerValue];
-    
+    NSInteger tmp = 0;//基准的位置
+    NSInteger tmpValue = [resultArray[tmp] integerValue];//基准的值
+    //边界值处理
+    if (indexTrail==indexHead&&tmpValue>[resultArray[indexHead] integerValue]) {
+        [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexHead]];
+        tmp=indexHead;
+    }
     while (indexTrail>indexHead) {
         //一次排序还没有进行完
-        
         //从后
         while ([resultArray[indexTrail] integerValue]>=tmpValue&&indexTrail>indexHead) {
             indexTrail--;
         }
-        //三个方法都可行，那三个方法有啥区别呢？
-//        resultArray[tmp] = resultArray[indexTrail];//可行
-//        [resultArray setObject:resultArray[indexTrail] atIndexedSubscript:tmp];//可行
-        [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexTrail]];//可行
-        tmp = indexTrail;
-        NSLog(@"%@",resultArray);
-        
+        if (indexHead<indexTrail) {
+            //三个方法都可行，那三个方法有啥区别呢？
+            //        resultArray[tmp] = resultArray[indexTrail];//可行
+            //        [resultArray setObject:resultArray[indexTrail] atIndexedSubscript:tmp];//可行
+            [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexTrail]];//可行
+            tmp = indexTrail--;
+            NSLog(@"%@",resultArray);
+        }
+    
         //从前
         while ([resultArray[indexHead] integerValue]<=tmpValue&&indexTrail>indexHead) {
             indexHead++;
         }
         
-        [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexHead]];
-        tmp = indexHead;
-        NSLog(@"%@",resultArray);
-    
+        if (indexHead<indexTrail) {
+            [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexHead]];
+            tmp = indexHead++;
+            NSLog(@"%@",resultArray);
+        }
     }
-    
-    
+//    indexTrail==indexHead
 //将基准放置合适的位置完成一次快排
-//    [resultArray replaceObjectAtIndex:indexTrail withObject:@(tmpValue)];
+    [resultArray replaceObjectAtIndex:tmp withObject:@(tmpValue)];
+    NSLog(@"完成一次快排-resultArray：%@",resultArray);
+    if (tmp>1) {
+        //对左边进行快排
+        [self quickSort:[resultArray subarrayWithRange:NSMakeRange(0, tmp)]];
+    }
+    if(resultArray.count-tmp>1){
+    //对右边进行快排
+        [self quickSort:[resultArray subarrayWithRange:NSMakeRange(tmp+1, resultArray.count-tmp-1)]];
+    }
 }
+
 #pragma mark - 对String进行插入分隔符
 -(void)insertSeperateToString:(NSString *)string{
 //  NSString * string = @"1234567890";
