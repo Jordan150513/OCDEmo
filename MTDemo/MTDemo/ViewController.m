@@ -25,12 +25,12 @@
     // 1、快速排序
     NSArray * array = [NSArray arrayWithObjects:@7,@1,@14,@8,@88,@9,@67,@34,@9,@77,@4, nil];
 //    [self quickSort:array];
-    // 2、冒泡排序
+    // 2、选择排序
 //    [self bubbleSort:array];
     
 }
 
-#pragma mark - 冒泡排序
+#pragma mark - 选择排序-------时间复杂度o(n²)----------空间复杂度o(n)
 -(void)bubbleSort:(NSArray *)array{
     NSMutableArray * operateArray = [array mutableCopy];
     NSLog(@"原始数组：%@",operateArray);
@@ -47,12 +47,12 @@
         NSInteger tmpValue = [operateArray[i] integerValue];
         [operateArray replaceObjectAtIndex:i withObject:operateArray[minIndex]];
         [operateArray replaceObjectAtIndex:minIndex withObject:@(tmpValue)];
-        NSLog(@"一次冒泡-array:%@",operateArray);
+        NSLog(@"一次选择-array:%@",operateArray);
     }
-    NSLog(@"冒泡排序结束：%@",operateArray);
+    NSLog(@"选择排序结束：%@",operateArray);
 }
 
-#pragma mark - 快速排序--时间复杂度---空间复杂度---初始版本，写的不好，应该是在同一个NSMutableArray中进行操作，不能开辟这个多resultArray
+#pragma mark - 快速排序-----时间复杂度(o(logN))---空间复杂度o(n)---初始版本，写的不好，应该是在同一个NSMutableArray中进行操作，不能开辟这个多resultArray
 -(void)quickSort:(NSArray *)array{
     
     NSMutableArray * resultArray = [array mutableCopy];
