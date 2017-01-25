@@ -26,12 +26,34 @@
     NSArray * array = [NSArray arrayWithObjects:@7,@1,@14,@8,@88,@9,@67,@34,@9,@77,@4, nil];
 //    [self quickSort:array];
     // 2、选择排序
-//    [self bubbleSort:array];
-    
+//    [self selectSort:array];
+    //冒泡排序
+    [self bubbleSort:[array mutableCopy]];
+}
+
+#pragma mark - 冒泡排序----时间复杂度o(n²)----复杂度o(n)
+-(void)bubbleSort:(NSMutableArray *)array{
+    NSMutableArray * operateArray = [array mutableCopy];
+    NSLog(@"原始数组：%@",operateArray);
+    for (NSInteger i = 0; i<operateArray.count-1; i++) {
+        //每次冒泡出最大的那个，只需要冒泡n-1次即可
+        for (NSInteger j = 0; j<operateArray.count-i-1; j++) {
+            //找到最小的
+            if ([operateArray[j] integerValue] > [operateArray[j+1] integerValue]) {
+                //交换操作
+                NSNumber * tmpValue = operateArray[j+1];
+                [operateArray replaceObjectAtIndex:j+1 withObject:operateArray[j]];
+                [operateArray replaceObjectAtIndex:j withObject:tmpValue];
+                NSLog(@"一次冒泡交换-array:%@",operateArray);
+            }
+        }
+        NSLog(@"一次冒泡结束-array:%@",operateArray);
+    }
+    NSLog(@"冒泡排序结束：%@",operateArray);
 }
 
 #pragma mark - 选择排序-------时间复杂度o(n²)----------空间复杂度o(n)
--(void)bubbleSort:(NSArray *)array{
+-(void)selectSort:(NSArray *)array{
     NSMutableArray * operateArray = [array mutableCopy];
     NSLog(@"原始数组：%@",operateArray);
     for (NSInteger i = 0; i<operateArray.count; i++) {
