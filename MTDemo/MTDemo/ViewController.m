@@ -30,58 +30,78 @@
     //
 }
 
-#pragma mark - 快速排序--时间复杂度---空间复杂度
+#pragma mark - 冒泡排序
+-(void)bubbleSort:(NSArray *)array{
+
+}
+
+#pragma mark - 快速排序--时间复杂度---空间复杂度---初始版本，写的不好，应该是在同一个NSMutableArray中进行操作，不能开辟这个多resultArray
 -(void)quickSort:(NSArray *)array{
     
     NSMutableArray * resultArray = [array mutableCopy];
     NSLog(@"原始待排序的数组-resultArray:%@",resultArray);
-    NSInteger indexTrail = resultArray.count-1;
-    NSInteger indexHead = 1;
-    NSInteger tmp = 0;//基准的位置
-    NSInteger tmpValue = [resultArray[tmp] integerValue];//基准的值
-    //边界值处理
-    if (indexTrail==indexHead&&tmpValue>[resultArray[indexHead] integerValue]) {
-        [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexHead]];
-        tmp=indexHead;
+    [self quickSortWithArray:resultArray fromIndex:0 toIndex:resultArray.count-1];
+}
+
+#pragma mark - 对NSMutableArray实例对象从fromIndex to toIndex进行快排，这样的封装抽象，才是更好一点的
+-(BOOL)quickSortWithArray:(NSMutableArray *)array fromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex{
+
+    NSInteger indexTrail = toIndex;
+    NSInteger indexHead = fromIndex+1;
+    NSInteger tmp = fromIndex;//基准的位置
+    NSInteger tmpValue = [array[tmp] integerValue];//基准的值
+    //边界值处理,只有两个元素
+    if (indexTrail==indexHead) {
+        if(tmpValue>[array[indexHead] integerValue]){
+            [array replaceObjectAtIndex:tmp withObject:array[indexHead]];
+            tmp=indexHead;
+            [array replaceObjectAtIndex:tmp withObject:@(tmpValue)];
+            NSLog(@"完成了快排%@",array);
+        }
+        return 1;
     }
+    
     while (indexTrail>indexHead) {
         //一次排序还没有进行完
         //从后
-        while ([resultArray[indexTrail] integerValue]>=tmpValue&&indexTrail>indexHead) {
+        while ([array[indexTrail] integerValue]>=tmpValue&&indexTrail>indexHead) {
             indexTrail--;
         }
         if (indexHead<indexTrail) {
             //三个方法都可行，那三个方法有啥区别呢？
             //        resultArray[tmp] = resultArray[indexTrail];//可行
             //        [resultArray setObject:resultArray[indexTrail] atIndexedSubscript:tmp];//可行
-            [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexTrail]];//可行
+            [array replaceObjectAtIndex:tmp withObject:array[indexTrail]];//可行
             tmp = indexTrail--;
-            NSLog(@"%@",resultArray);
+            NSLog(@"%@",array);
         }
-    
+        
         //从前
-        while ([resultArray[indexHead] integerValue]<=tmpValue&&indexTrail>indexHead) {
+        while ([array[indexHead] integerValue]<=tmpValue&&indexTrail>indexHead) {
             indexHead++;
         }
         
         if (indexHead<indexTrail) {
-            [resultArray replaceObjectAtIndex:tmp withObject:resultArray[indexHead]];
+            [array replaceObjectAtIndex:tmp withObject:array[indexHead]];
             tmp = indexHead++;
-            NSLog(@"%@",resultArray);
+            NSLog(@"%@",array);
         }
     }
-//    indexTrail==indexHead
-//将基准放置合适的位置完成一次快排
-    [resultArray replaceObjectAtIndex:tmp withObject:@(tmpValue)];
-    NSLog(@"完成一次快排-resultArray：%@",resultArray);
-    if (tmp>1) {
+    //    indexTrail==indexHead
+    //将基准放置合适的位置完成一次快排
+    [array replaceObjectAtIndex:tmp withObject:@(tmpValue)];
+    NSLog(@"完成一次快排-resultArray：%@",array);
+    if (tmp-fromIndex>1) {
         //对左边进行快排
-        [self quickSort:[resultArray subarrayWithRange:NSMakeRange(0, tmp)]];
+//        [self quickSort:[array subarrayWithRange:NSMakeRange(0, tmp)]];
+        [self quickSortWithArray:array fromIndex:fromIndex toIndex:tmp-1];
     }
-    if(resultArray.count-tmp>1){
-    //对右边进行快排
-        [self quickSort:[resultArray subarrayWithRange:NSMakeRange(tmp+1, resultArray.count-tmp-1)]];
+    if(toIndex-tmp>1){
+        //对右边进行快排
+//        [self quickSort:[array subarrayWithRange:NSMakeRange(tmp+1, array.count-tmp-1)]];
+        [self quickSortWithArray:array fromIndex:tmp+1 toIndex:toIndex];
     }
+    return 1;
 }
 
 #pragma mark - 对String进行插入分隔符
