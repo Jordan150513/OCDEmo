@@ -29,9 +29,29 @@
 //    [self selectSort:array];
     // 3、冒泡排序
 //    [self bubbleSort:[array mutableCopy]];
+    
+    //响应链的问题：
+    [self responseToAction];
 }
 
+#pragma mark - 响应链的问题
+-(void)responseToAction{
+    UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+    bgView.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:bgView];
+    
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:@"Click" forState:UIControlStateNormal];
+    [button setBackgroundColor:[UIColor redColor]];
+    [button setFrame:CGRectMake(0, -25, 50, 50)];
+    [bgView addSubview:button];
+    [button addTarget:self action:@selector(ckick:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
 
+-(void)ckick:(UIButton *)sender{
+    NSLog(@"button clicked");
+}
 /*
                         适用数据结构              时间复杂度               空间复杂度
  ——————————————————————————————————————————————————————————————————————————————————
