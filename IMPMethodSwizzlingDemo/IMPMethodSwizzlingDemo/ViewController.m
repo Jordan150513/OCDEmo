@@ -13,7 +13,11 @@
 @end
 
 @implementation ViewController
-
+/*
+ 这里会引申一个问题：
+ 就是load()和init()有什么区别？
+ 那个时候没有回答上来，没有辨识到，需要去探究！！！
+ */
 +(void)load{
 
     static dispatch_once_t onceToken;
