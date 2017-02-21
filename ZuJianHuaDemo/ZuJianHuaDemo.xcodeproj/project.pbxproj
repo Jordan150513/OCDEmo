@@ -21,6 +21,8 @@
 		DC3F7BA01E5BD0620057E04D /* Mediator.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7B9F1E5BD0620057E04D /* Mediator.m */; };
 		DC3F7BA31E5BFE1F0057E04D /* MediatorTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BA21E5BFE1F0057E04D /* MediatorTwo.m */; };
 		DC3F7BAA1E5C11340057E04D /* ComponentFourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BA91E5C11340057E04D /* ComponentFourViewController.m */; };
+		DC3F7BAD1E5C3BE70057E04D /* ProtocolMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BAC1E5C3BE70057E04D /* ProtocolMediator.m */; };
+		DC3F7BB41E5C40240057E04D /* ComponentFiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BB31E5C40240057E04D /* ComponentFiveViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,11 @@
 		DC3F7BA21E5BFE1F0057E04D /* MediatorTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediatorTwo.m; sourceTree = "<group>"; };
 		DC3F7BA81E5C11340057E04D /* ComponentFourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentFourViewController.h; sourceTree = "<group>"; };
 		DC3F7BA91E5C11340057E04D /* ComponentFourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentFourViewController.m; sourceTree = "<group>"; };
+		DC3F7BAB1E5C3BE70057E04D /* ProtocolMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolMediator.h; sourceTree = "<group>"; };
+		DC3F7BAC1E5C3BE70057E04D /* ProtocolMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolMediator.m; sourceTree = "<group>"; };
+		DC3F7BB11E5C3D6B0057E04D /* ComponentProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentProtocol.h; sourceTree = "<group>"; };
+		DC3F7BB21E5C40240057E04D /* ComponentFiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentFiveViewController.h; sourceTree = "<group>"; };
+		DC3F7BB31E5C40240057E04D /* ComponentFiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentFiveViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +229,11 @@
 			children = (
 				DC3F7BA81E5C11340057E04D /* ComponentFourViewController.h */,
 				DC3F7BA91E5C11340057E04D /* ComponentFourViewController.m */,
+				DC3F7BAB1E5C3BE70057E04D /* ProtocolMediator.h */,
+				DC3F7BAC1E5C3BE70057E04D /* ProtocolMediator.m */,
+				DC3F7BB11E5C3D6B0057E04D /* ComponentProtocol.h */,
+				DC3F7BB21E5C40240057E04D /* ComponentFiveViewController.h */,
+				DC3F7BB31E5C40240057E04D /* ComponentFiveViewController.m */,
 			);
 			path = "ComponentFour(模块4)";
 			sourceTree = "<group>";
@@ -365,7 +377,9 @@
 				DC3F7B5F1E5BCBC10057E04D /* ViewController.m in Sources */,
 				DC3F7B9D1E5BCF940057E04D /* ComponentThreeViewController.m in Sources */,
 				DC3F7B5C1E5BCBC10057E04D /* AppDelegate.m in Sources */,
+				DC3F7BB41E5C40240057E04D /* ComponentFiveViewController.m in Sources */,
 				DC3F7BAA1E5C11340057E04D /* ComponentFourViewController.m in Sources */,
+				DC3F7BAD1E5C3BE70057E04D /* ProtocolMediator.m in Sources */,
 				DC3F7BA01E5BD0620057E04D /* Mediator.m in Sources */,
 				DC3F7B591E5BCBC10057E04D /* main.m in Sources */,
 				DC3F7B9C1E5BCF940057E04D /* ComponentTwoViewController.m in Sources */,
