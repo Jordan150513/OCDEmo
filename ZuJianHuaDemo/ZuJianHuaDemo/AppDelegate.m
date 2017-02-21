@@ -22,7 +22,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * vc = [[ViewController alloc] init];
     UINavigationController * navc = [[UINavigationController alloc] initWithRootViewController:vc];
-    self.window.rootViewController = navc;
+    [self.window setRootViewController:navc];
+//    self.window.rootViewController.navigationController = navc;
+    //self.window.rootViewController.navigationController 是only read的
     [self.window makeKeyWindow];
     [self.window makeKeyAndVisible];
     [ComponentThreeViewController initComponent];
