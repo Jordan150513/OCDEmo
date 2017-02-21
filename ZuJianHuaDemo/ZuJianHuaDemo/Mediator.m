@@ -9,8 +9,11 @@
 //组件化的中间控制器
 #import "Mediator.h"
 //#import "ComponentOneViewController.h"
-#import "ComponentTwoViewController.h"
+//#import "ComponentTwoViewController.h"
 
+@interface Mediator ()
+
+@end
 
 @implementation Mediator
 + (UIViewController *)ComponentOneViewController:(NSString *)someId {
@@ -27,4 +30,6 @@
     return [cls performSelector:NSSelectorFromString(@"createComponentTwoViewController:andType:") withObject:@{@"someId":someId,@"type":@(type)}];
     //此处注意，多个参数的时候，方法的全名别写错了
 }
+
+
 @end

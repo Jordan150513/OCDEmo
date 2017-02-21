@@ -12,4 +12,5 @@
 @interface Mediator : NSObject
 + (UIViewController *)ComponentOneViewController:(NSString *)someId;
 + (UIViewController *)ComponentTwoViewController:(NSString *)someId andType:(NSInteger)type;
+
 @end

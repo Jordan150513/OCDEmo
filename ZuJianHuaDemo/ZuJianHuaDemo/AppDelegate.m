@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "ComponentThreeViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,6 +25,7 @@
     self.window.rootViewController = navc;
     [self.window makeKeyWindow];
     [self.window makeKeyAndVisible];
+    [ComponentThreeViewController initComponent];
     return YES;
 }
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ComponentThreeViewController : UIViewController
-
++ (void)initComponent;
 @end

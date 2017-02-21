@@ -10,6 +10,7 @@
 //#import "ComponentOneViewController.h"
 //#import "ComponentTwoViewController.h"
 #import "Mediator.h"
+#import "MediatorTwo.h"
 
 @interface ViewController ()
 @property(nonatomic,strong)NSString * someId;
@@ -25,18 +26,25 @@
     
 }
 
+#pragma mark - 第二种组件化的方案 注册表的方式 用URL表示接口
+//蘑菇街用的解决方式：注册表的方式，用URL表示接口，在模块启动时注册模块提供的接口
++ (void)gotoThree:(NSString *)someId {
+    [[MediatorTwo sharedInstance] openURL:@"weread://bookDetail" withParam:@{@"someId": someId}];
+}
+
 //测试代码
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    [self gotoOne];
-    [self gotoTwo];
+    [[self class] gotoThree:self.someId];
 }
 
 
-
-
-
-
 #pragma mark - 第一种组件化的方案
+////测试代码
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    //    [self gotoOne];
+//    [self gotoTwo];
+//}
+
 //跳转到组件1
 -(void)gotoOne{
 //    ComponentOneViewController * vcOne = [[ComponentOneViewController alloc] initWithId:self.someId];
@@ -55,9 +63,6 @@
     [self.navigationController pushViewController:vcTwo animated:YES];
     
 }
-
-
-#pragma mark - 第二种组件化的方案
 
 
 

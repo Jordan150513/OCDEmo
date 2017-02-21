@@ -7,9 +7,10 @@
 //
 
 #import "ComponentThreeViewController.h"
+#import "MediatorTwo.h"
 
 @interface ComponentThreeViewController ()
-
+@property(nonatomic,strong)NSString * someId;
 @end
 
 @implementation ComponentThreeViewController
@@ -24,6 +25,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 第二种组件化方式
++ (void)initComponent {
+    [[MediatorTwo sharedInstance] registerURLPattern:@"weread://bookDetail" toHandler:^(NSDictionary *param) {
+        ComponentThreeViewController *vcThree = [[ComponentThreeViewController alloc] initWithSomeid:param[@"someId"]];
+        UINavigationController * navc = [UIApplication sharedApplication].keyWindow.rootViewController.navigationController;
+        [navc pushViewController:vcThree animated:YES];
+        //这里没有实现跳转哎？什么情况？？
+    }];
+}
+
+-(instancetype)initWithSomeid:(NSString *)someId{
+    if(self = [super init]){
+        
+    }
+    self.someId = someId;
+    return self;
+}
 /*
 #pragma mark - Navigation
 
