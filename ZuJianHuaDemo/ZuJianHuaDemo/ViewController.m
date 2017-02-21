@@ -27,6 +27,7 @@
 }
 
 #pragma mark - 第二种组件化的方案 注册表的方式 用URL表示接口
+//需要事先注册好，才能正常执行
 //蘑菇街用的解决方式：注册表的方式，用URL表示接口，在模块启动时注册模块提供的接口
 + (void)gotoThree:(NSString *)someId {
     [[MediatorTwo sharedInstance] openURL:@"weread://bookDetail" withParam:@{@"someId": someId}];

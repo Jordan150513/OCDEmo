@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"component 3";
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,9 +30,13 @@
 + (void)initComponent {
     [[MediatorTwo sharedInstance] registerURLPattern:@"weread://bookDetail" toHandler:^(NSDictionary *param) {
         ComponentThreeViewController *vcThree = [[ComponentThreeViewController alloc] initWithSomeid:param[@"someId"]];
-        UINavigationController * navc = [UIApplication sharedApplication].keyWindow.rootViewController.navigationController;
-        [navc pushViewController:vcThree animated:YES];
+//        UINavigationController * navc = [UIApplication sharedApplication].keyWindow.rootViewController.navigationController;
+//        //取不出来navigationController，取出来是nil，所以不能成功跳转
+//        [navc pushViewController:vcThree animated:YES];
         //这里没有实现跳转哎？什么情况？？
+        //改成下面这样就跳转成功了
+        UINavigationController * navc = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+        [navc pushViewController:vcThree animated:YES];
     }];
 }
 

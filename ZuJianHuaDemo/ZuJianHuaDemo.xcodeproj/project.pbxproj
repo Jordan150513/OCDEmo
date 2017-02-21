@@ -20,6 +20,9 @@
 		DC3F7B9D1E5BCF940057E04D /* ComponentThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7B9B1E5BCF940057E04D /* ComponentThreeViewController.m */; };
 		DC3F7BA01E5BD0620057E04D /* Mediator.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7B9F1E5BD0620057E04D /* Mediator.m */; };
 		DC3F7BA31E5BFE1F0057E04D /* MediatorTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BA21E5BFE1F0057E04D /* MediatorTwo.m */; };
+		DC3F7BAA1E5C11340057E04D /* ComponentFourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BA91E5C11340057E04D /* ComponentFourViewController.m */; };
+		DC3F7BAD1E5C3BE70057E04D /* ProtocolMediator.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BAC1E5C3BE70057E04D /* ProtocolMediator.m */; };
+		DC3F7BB41E5C40240057E04D /* ComponentFiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3F7BB31E5C40240057E04D /* ComponentFiveViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,13 @@
 		DC3F7B9F1E5BD0620057E04D /* Mediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mediator.m; sourceTree = "<group>"; };
 		DC3F7BA11E5BFE1F0057E04D /* MediatorTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediatorTwo.h; sourceTree = "<group>"; };
 		DC3F7BA21E5BFE1F0057E04D /* MediatorTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediatorTwo.m; sourceTree = "<group>"; };
+		DC3F7BA81E5C11340057E04D /* ComponentFourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentFourViewController.h; sourceTree = "<group>"; };
+		DC3F7BA91E5C11340057E04D /* ComponentFourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentFourViewController.m; sourceTree = "<group>"; };
+		DC3F7BAB1E5C3BE70057E04D /* ProtocolMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolMediator.h; sourceTree = "<group>"; };
+		DC3F7BAC1E5C3BE70057E04D /* ProtocolMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolMediator.m; sourceTree = "<group>"; };
+		DC3F7BB11E5C3D6B0057E04D /* ComponentProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentProtocol.h; sourceTree = "<group>"; };
+		DC3F7BB21E5C40240057E04D /* ComponentFiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentFiveViewController.h; sourceTree = "<group>"; };
+		DC3F7BB31E5C40240057E04D /* ComponentFiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComponentFiveViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,22 +126,18 @@
 		DC3F7B561E5BCBC10057E04D /* ZuJianHuaDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DC3F7BA61E5C107E0057E04D /* 方案三 */,
+				DC3F7BA51E5C10300057E04D /* 方案二 */,
+				DC3F7BA41E5C10190057E04D /* 方案一 */,
 				DC3F7B5A1E5BCBC10057E04D /* AppDelegate.h */,
 				DC3F7B5B1E5BCBC10057E04D /* AppDelegate.m */,
 				DC3F7B5D1E5BCBC10057E04D /* ViewController.h */,
 				DC3F7B5E1E5BCBC10057E04D /* ViewController.m */,
-				DC3F7B991E5BCF940057E04D /* ComponentThree(模块3) */,
-				DC3F7B961E5BCF940057E04D /* ComponentTwo(模块2) */,
-				DC3F7B8A1E5BCE9E0057E04D /* ComponentOne(模块1) */,
 				DC3F7B601E5BCBC10057E04D /* Main.storyboard */,
 				DC3F7B631E5BCBC10057E04D /* Assets.xcassets */,
 				DC3F7B651E5BCBC20057E04D /* LaunchScreen.storyboard */,
 				DC3F7B681E5BCBC20057E04D /* Info.plist */,
 				DC3F7B571E5BCBC10057E04D /* Supporting Files */,
-				DC3F7B9E1E5BD0620057E04D /* Mediator.h */,
-				DC3F7B9F1E5BD0620057E04D /* Mediator.m */,
-				DC3F7BA11E5BFE1F0057E04D /* MediatorTwo.h */,
-				DC3F7BA21E5BFE1F0057E04D /* MediatorTwo.m */,
 			);
 			path = ZuJianHuaDemo;
 			sourceTree = "<group>";
@@ -187,6 +193,49 @@
 				DC3F7B9B1E5BCF940057E04D /* ComponentThreeViewController.m */,
 			);
 			path = "ComponentThree(模块3)";
+			sourceTree = "<group>";
+		};
+		DC3F7BA41E5C10190057E04D /* 方案一 */ = {
+			isa = PBXGroup;
+			children = (
+				DC3F7B9E1E5BD0620057E04D /* Mediator.h */,
+				DC3F7B9F1E5BD0620057E04D /* Mediator.m */,
+				DC3F7B961E5BCF940057E04D /* ComponentTwo(模块2) */,
+				DC3F7B8A1E5BCE9E0057E04D /* ComponentOne(模块1) */,
+			);
+			name = "方案一";
+			sourceTree = "<group>";
+		};
+		DC3F7BA51E5C10300057E04D /* 方案二 */ = {
+			isa = PBXGroup;
+			children = (
+				DC3F7BA11E5BFE1F0057E04D /* MediatorTwo.h */,
+				DC3F7BA21E5BFE1F0057E04D /* MediatorTwo.m */,
+				DC3F7B991E5BCF940057E04D /* ComponentThree(模块3) */,
+			);
+			name = "方案二";
+			sourceTree = "<group>";
+		};
+		DC3F7BA61E5C107E0057E04D /* 方案三 */ = {
+			isa = PBXGroup;
+			children = (
+				DC3F7BA71E5C10900057E04D /* ComponentFour(模块4) */,
+			);
+			name = "方案三";
+			sourceTree = "<group>";
+		};
+		DC3F7BA71E5C10900057E04D /* ComponentFour(模块4) */ = {
+			isa = PBXGroup;
+			children = (
+				DC3F7BA81E5C11340057E04D /* ComponentFourViewController.h */,
+				DC3F7BA91E5C11340057E04D /* ComponentFourViewController.m */,
+				DC3F7BAB1E5C3BE70057E04D /* ProtocolMediator.h */,
+				DC3F7BAC1E5C3BE70057E04D /* ProtocolMediator.m */,
+				DC3F7BB11E5C3D6B0057E04D /* ComponentProtocol.h */,
+				DC3F7BB21E5C40240057E04D /* ComponentFiveViewController.h */,
+				DC3F7BB31E5C40240057E04D /* ComponentFiveViewController.m */,
+			);
+			path = "ComponentFour(模块4)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,6 +377,9 @@
 				DC3F7B5F1E5BCBC10057E04D /* ViewController.m in Sources */,
 				DC3F7B9D1E5BCF940057E04D /* ComponentThreeViewController.m in Sources */,
 				DC3F7B5C1E5BCBC10057E04D /* AppDelegate.m in Sources */,
+				DC3F7BB41E5C40240057E04D /* ComponentFiveViewController.m in Sources */,
+				DC3F7BAA1E5C11340057E04D /* ComponentFourViewController.m in Sources */,
+				DC3F7BAD1E5C3BE70057E04D /* ProtocolMediator.m in Sources */,
 				DC3F7BA01E5BD0620057E04D /* Mediator.m in Sources */,
 				DC3F7B591E5BCBC10057E04D /* main.m in Sources */,
 				DC3F7B9C1E5BCF940057E04D /* ComponentTwoViewController.m in Sources */,
@@ -570,6 +622,7 @@
 				DC3F7B831E5BCBC20057E04D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DC3F7B841E5BCBC20057E04D /* Build configuration list for PBXNativeTarget "ZuJianHuaDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +631,7 @@
 				DC3F7B861E5BCBC20057E04D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DC3F7B871E5BCBC20057E04D /* Build configuration list for PBXNativeTarget "ZuJianHuaDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -586,6 +640,7 @@
 				DC3F7B891E5BCBC20057E04D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
