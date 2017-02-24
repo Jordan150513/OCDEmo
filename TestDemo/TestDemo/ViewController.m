@@ -33,7 +33,7 @@
 - (void)test {
     struct objc_selector * sel_1 = @selector(methedWithStr1:str2:);
     SEL sel_2 = @selector(methedWithStr1:str2:);
-    if (sel_1 == sel_2) {
+    if (sel_1 == sel_2) {//会 警告 ： 比较 指向不同类型的指针 其实是一样的
         NSLog(@"一样");    // 确实一样
     } else {
         NSLog(@"不一样");
