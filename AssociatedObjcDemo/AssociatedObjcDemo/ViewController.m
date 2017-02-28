@@ -21,9 +21,9 @@ __weak NSString * assignV = nil;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.title = @"View Controller";
-    self.weakProperty = @"weakValue";
-    self.strongProperty = @"strongValue";
-    self.assignProperty = @"assignValue";
+    self.weakProperty = [NSString stringWithFormat:@"weakValue" ];
+    self.strongProperty = [NSString stringWithFormat:@"strongValue"];
+    self.assignProperty = [NSString stringWithFormat:@"assignValue"];
     weakV = self.weakProperty;
     strongV = self.strongProperty;
     assignV = self.assignProperty;
@@ -31,24 +31,24 @@ __weak NSString * assignV = nil;
     
 }
 
--(void)viewWillDisappear:(BOOL)animated{
-    NSLog(@"%@",weakV);
-    NSLog(@"%@",strongV);
-    NSLog(@"%@",assignV);
-}
+//-(void)viewWillDisappear:(BOOL)animated{
+//    NSLog(@"%@",self.weakProperty);
+//    NSLog(@"%@",self.strongProperty);
+//    NSLog(@"%@",self.assignProperty);
+//}
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 
-    NSLog(@"%@",weakV);
-    NSLog(@"%@",strongV);
-    NSLog(@"%@",assignV);
+    NSLog(@"%@",self.weakProperty);
+    NSLog(@"%@",self.strongProperty);
+    NSLog(@"%@",self.assignProperty);
 }
 
--(void)dealloc{
-    NSLog(@"%@",weakV);
-    NSLog(@"%@",strongV);
-    NSLog(@"%@",assignV);
-    NSLog(@"%@",self);
-}
+//-(void)dealloc{
+//    NSLog(@"%@",self.weakProperty);
+//    NSLog(@"%@",self.strongProperty);
+//    NSLog(@"%@",self.assignProperty);
+//    NSLog(@"%@",self);
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
