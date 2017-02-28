@@ -32,9 +32,21 @@ __weak NSString * assignV = nil;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-
+    NSLog(@"%@",weakV);
+    NSLog(@"%@",strongV);
+    NSLog(@"%@",assignV);
 }
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    NSLog(@"%@",weakV);
+    NSLog(@"%@",strongV);
+    NSLog(@"%@",assignV);
+}
+
 -(void)dealloc{
+    NSLog(@"%@",weakV);
+    NSLog(@"%@",strongV);
+    NSLog(@"%@",assignV);
     NSLog(@"%@",self);
 }
 - (void)didReceiveMemoryWarning {
