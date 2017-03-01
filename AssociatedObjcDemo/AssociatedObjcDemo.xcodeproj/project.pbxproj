@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC213F201E66614A002CFEF4 /* assign释放.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DC213F1E1E66614A002CFEF4 /* assign释放.jpg */; };
+		DC213F211E66614A002CFEF4 /* strong释放.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DC213F1F1E66614A002CFEF4 /* strong释放.jpg */; };
 		DCA56A621E65794C00AE6DA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA56A611E65794C00AE6DA9 /* main.m */; };
 		DCA56A651E65794C00AE6DA9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA56A641E65794C00AE6DA9 /* AppDelegate.m */; };
 		DCA56A681E65794C00AE6DA9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA56A671E65794C00AE6DA9 /* ViewController.m */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC213F1E1E66614A002CFEF4 /* assign释放.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "assign释放.jpg"; sourceTree = "<group>"; };
+		DC213F1F1E66614A002CFEF4 /* strong释放.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "strong释放.jpg"; sourceTree = "<group>"; };
 		DCA56A5D1E65794B00AE6DA9 /* AssociatedObjcDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssociatedObjcDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCA56A611E65794C00AE6DA9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DCA56A631E65794C00AE6DA9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 		DCA56A5F1E65794B00AE6DA9 /* AssociatedObjcDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DC213F1E1E66614A002CFEF4 /* assign释放.jpg */,
+				DC213F1F1E66614A002CFEF4 /* strong释放.jpg */,
 				DCA56A631E65794C00AE6DA9 /* AppDelegate.h */,
 				DCA56A641E65794C00AE6DA9 /* AppDelegate.m */,
 				DCA56A661E65794C00AE6DA9 /* ViewController.h */,
@@ -256,8 +262,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC213F211E66614A002CFEF4 /* strong释放.jpg in Resources */,
 				DCA56A701E65794C00AE6DA9 /* LaunchScreen.storyboard in Resources */,
 				DCA56A6D1E65794C00AE6DA9 /* Assets.xcassets in Resources */,
+				DC213F201E66614A002CFEF4 /* assign释放.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +524,7 @@
 				DCA56A8C1E65794C00AE6DA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCA56A8D1E65794C00AE6DA9 /* Build configuration list for PBXNativeTarget "AssociatedObjcDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +533,7 @@
 				DCA56A8F1E65794C00AE6DA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DCA56A901E65794C00AE6DA9 /* Build configuration list for PBXNativeTarget "AssociatedObjcDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +542,7 @@
 				DCA56A921E65794C00AE6DA9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

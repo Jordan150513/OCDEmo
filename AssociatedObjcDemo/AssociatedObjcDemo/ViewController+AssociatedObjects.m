@@ -24,14 +24,14 @@
 //OBJC_EXPORT id objc_getAssociatedObject(id object, const void *key)
 
 #pragma mark - weak的set get方法
--(void)setWeakProperty:(NSString *)weakProperty{
-    //key就是weakProperty
-    objc_setAssociatedObject(self, @selector(weakProperty), weakProperty, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
--(NSString *)weakProperty{
-    return objc_getAssociatedObject(self, _cmd);//_cmd作为key _cmd 就是“weakProperty”
-}
+//-(void)setWeakProperty:(NSString *)weakProperty{
+//    //key就是"weakProperty"
+//    objc_setAssociatedObject(self, @selector(weakProperty), weakProperty, OBJC_ASSOCIATION_COPY_NONATOMIC);
+//}
+//
+//-(NSString *)weakProperty{
+//    return objc_getAssociatedObject(self, _cmd);//_cmd作为key _cmd 就是“weakProperty”
+//}
 
 #pragma mark - strong的set get方法
 -(void)setStrongProperty:(NSString *)strongProperty{
@@ -49,5 +49,14 @@
 
 -(NSString *)assignProperty{
     return objc_getAssociatedObject(self, _cmd);
+}
+
+#pragma mark - copy的 set get方法
+-(NSString *)copyProperty{
+     return objc_getAssociatedObject(self, _cmd);
+}
+
+-(void)setCopyProperty:(NSString *)copyProperty{
+    objc_setAssociatedObject(self, @selector(copyProperty), copyProperty, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 @end

@@ -12,6 +12,6 @@
 
 @property(nonatomic,strong) NSString * strongProperty;
 @property(nonatomic,assign) NSString * assignProperty;
-@property(nonatomic,weak) NSString * weakProperty;
-
+//@property(nonatomic,weak) NSString * weakProperty;
+@property(nonatomic,copy) NSString * copyProperty;
 @end
