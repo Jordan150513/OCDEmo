@@ -22,6 +22,13 @@
  - (UIImage *)sd_animatedImageByScalingAndCroppingToSize:(CGSize)size;
  */
 
+/*
+ * 如果直接一个问题 问SD的原理是什么，如何回答是比较 恰当的回答？
+ *
+ *
+ *
+ *
+ */
 static NSString * urlStringgif = @"https://img2.soufun.com/bbsv2/face/em016.gif";//需要配置证书
 static NSString * urlStringgif2 = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploads/images/38/B23B980EFC9F27338390F6B5635F4CAA";
 static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploads/images/100/803C68E5FA7D8EBE7CCE498C0D1223C8";
@@ -40,7 +47,7 @@ static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploa
     [self commonImage];
     
     //sd实现gif
-    [self gifImage];
+//    [self gifImage];
 
 //    //FL实现gif，还有问题
 //    [self FLImage];

@@ -7,8 +7,15 @@
 //
 
 #import "ViewController.h"
+//#import "QDObject.h"
+#import <objc/runtime.h>
+
 
 @interface ViewController ()
+@property(nonatomic)NSArray * arrDefault;
+@property(nonatomic,strong)NSArray * arrStrong;
+@property(nonatomic,weak)NSArray * arrWeak;
+@property(nonatomic,assign)NSArray * arrAssign;
 
 @end
 
@@ -16,15 +23,105 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"test everything";
+    
+//    [self testMRCARC];
+    
+//    [self test_objc_storeWeak];
+    
+//    QDObject * objInstance = [[QDObject alloc] init];
     
 //    [self test];
     
     //const和指针的辨析
-    [self testConst];
+//    [self testConst];
     
 //    //指针的辨析
 //    [self testPointer];
     
+}
+
+#pragma mark - MRC & ARC
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSLog(@"Default:%@",self.arrDefault);
+    NSLog(@"Strong:%@",self.arrStrong);
+//    NSLog(@"Assign:%@",self.arrAssign);//报错，访问了已经释放了的内存地址
+    NSLog(@"Weak:%@",self.arrWeak);
+    // 打印出来是 null weak释放回收之后，会赋值nil（是在强引用归零的时候，什么时候强引用归零了？这个就一个弱引用，所以弱引用赋值之后，代码块执行完之后，会检查，没有强引用就释放掉了，所以后来我们就看不到了） 但是assign不会在强引用归零的时候进行置为nil的操作
+    NSLog(@"--------------------\n");
+}
+
+#pragma mark - MRC & ARC
+-(void)testMRCARC{
+    
+    self.arrDefault = [NSArray arrayWithObjects:[NSString stringWithFormat:@"defaultARR"], nil];
+    self.arrWeak = [NSArray arrayWithObjects:[NSString stringWithFormat:@"weakARR"], nil];
+    self.arrAssign = [NSArray arrayWithObjects:[NSString stringWithFormat:@"assignARR"], nil];;
+    self.arrStrong = [NSArray arrayWithObjects:[NSString stringWithFormat:@"strongARR"], nil];
+    
+    NSLog(@"%@",self.arrDefault);
+    NSLog(@"%@",self.arrStrong);
+    NSLog(@"%@",self.arrAssign);
+    NSLog(@"%@",self.arrWeak);
+    NSLog(@"--------------------\n");
+}
+
+#pragma mark - objc_storeWeak && objc_removeWeak
+-(void)test_objc_storeWeak{
+
+    id a = [NSObject new];
+    id b = [NSObject new];
+    id c;
+    printf("a------%p\n",a);
+    printf("b------%p\n",b);
+    printf("c------%p\n",c);
+    /*
+     输出：
+     a------0x17401c670
+     b------0x17401c6a0
+     c------0x0
+     a b 地址相差了 48个单位 说明
+     */
+    objc_storeWeak(&c, a);
+    
+    printf("a------%p\n",a);
+    printf("b------%p\n",b);
+    printf("c------%p\n",c);
+    /*
+     输出：
+     a------0x170012c20
+     b------0x170012bf0
+     c------0x0
+     
+     a------0x170012c20
+     b------0x170012bf0
+     c------0x170012c20
+     */
+    objc_storeWeak(&c, b);  // 报错
+    /*
+     为什么会报错：
+     c是之前通过直接把a store进来的 没有经过注册，所以 进行第二次store的时候，要remove旧值，在remove的时候就会需要进行验证entry->inline_referrers[i]数组中是否有entry->inline_referrers[i] == old_referrer，有的话 就将这个数组的元素置为nil，所以这个不会找到旧值
+     */
+    printf("a------%p\n",a);
+    printf("b------%p\n",b);
+    printf("c------%p\n",c);
+    
+    /*
+     输出效果：
+     a------0x170016300
+     b------0x170016310
+     c------0x0
+     a------0x170016300
+     b------0x170016310
+     c------0x170016300
+     objc[1396]: Attempted to unregister unknown __weak variable at 0x16fd6de98. This is probably incorrect use of objc_storeWeak() and objc_loadWeak(). Break on objc_weak_error to debug.
+     
+     a------0x170016300
+     b------0x170016310
+     c------0x170016310
+     */
+    
+    //为什么会造出来这个错呢？
 }
 
 #pragma mark - 指针的辨析
@@ -155,6 +252,7 @@
     NSLog(@"%@,%@", str1, str2);
 }
 
+#pragma mark - selector的本质是char * 的验证
 - (void)test {
     struct objc_selector * sel_1 = @selector(methedWithStr1:str2:);
     SEL sel_2 = @selector(methedWithStr1:str2:);
@@ -166,6 +264,11 @@
     // 转为 char *
     char * str_1 = (char *)sel_1;
     printf("%s\n", str_1);  // methedWithStr1:str2:
+    
+    
+    //还可以这样获取 SEL的name
+     char * nameGet = sel_getName(sel_1);
+    NSLog(@"--------------%s",nameGet);
 }
 
 
