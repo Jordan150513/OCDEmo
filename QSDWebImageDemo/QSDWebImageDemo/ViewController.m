@@ -57,6 +57,7 @@ static NSString * urlStringpng = @"http://o9vi0jo2t.bkt.clouddn.com/client_uploa
 -(void)commonImage{
     //一般图片
     UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 80, 80)];
+    //三方的使用接口入口
     [imageView sd_setImageWithURL:[NSURL URLWithString:urlStringpng] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [self.view addSubview:imageView];
 }
