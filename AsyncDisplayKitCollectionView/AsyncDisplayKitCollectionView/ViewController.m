@@ -11,6 +11,12 @@
 #import "ItemNode.h"
 #import "SupplementaryNode.h"
 
+/*
+ * 目前还有一个很奇怪的问题 ，就是布局的问题
+ * 1、组内最后一个感觉布局很奇怪啊 
+ * 2、横屏过来的时候 每组的布局还不一样
+ */
+
 @interface ViewController ()<ASCollectionDelegate,ASCollectionDataSource>
 // ASCollectionNode 对应 UICollectionView
 @property(nonatomic,strong)ASCollectionNode * collectionNode;
@@ -45,30 +51,35 @@
 
 #pragma mark - dataSource
 -(ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath{
+    // 组内的 cell 单元格的定义
     NSString * text = [NSString stringWithFormat:@"(%ld,%ld) say hi.",indexPath.section,indexPath.item];
     return ^{
         return [[ItemNode alloc] initWithText:text];
     };
 }
-
+// 这个方法 实现了什么 底层如何实现的
 -(ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-  NSString * text = [kind isEqualToString:UICollectionElementKindSectionHeader]?@"Header":@"Footer";
+    
+    NSString * text = [kind isEqualToString:UICollectionElementKindSectionHeader]?@"Header":@"Footer";
     SupplementaryNode * node = [[SupplementaryNode alloc] initWithText:text];
+    // footer 还是 header 的自定义node
     BOOL isHeaderSection = [kind isEqualToString:UICollectionElementKindSectionHeader];
     node.backgroundColor = isHeaderSection?[UIColor blueColor]:[UIColor redColor];
     return node;
 }
 
 -(NSInteger)collectionNode:(ASCollectionNode *)collectionNode numberOfItemsInSection:(NSInteger)section{
+    // 每组 10 个
     return 10;
 }
 
 -(NSInteger)numberOfSectionsInCollectionNode:(ASCollectionNode *)collectionNode{
+    //一共有 100 组
     return 100;
     
 }
 
-// ???
+// ??? 这个方法实现了什么 底层实现了什么？？
 -(void)collectionNode:(ASCollectionNode *)collectionNode willBeginBatchFetchWithContext:(ASBatchContext *)context{
     NSLog(@"Fetch additional content!");
     [context completeBatchFetching:YES];

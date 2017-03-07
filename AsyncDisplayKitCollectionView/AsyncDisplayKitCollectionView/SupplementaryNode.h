@@ -7,7 +7,7 @@
 //
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
-//自定义Node ASCellNode 的子类
+//自定义Node ASCellNode 的子类 footer header 自定义的node
 @interface SupplementaryNode : ASCellNode
 -(instancetype)initWithText:(NSString *)text;
 @end

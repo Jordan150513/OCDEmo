@@ -8,7 +8,7 @@
 
 #import <AsyncDisplayKit/AsyncDisplayKit.h>
 
-//自定义一个 ASTextCellNode 子类的 ItemNode node类型
+//自定义一个 ASTextCellNode 子类的 ItemNode node类型 组内的 cell单元小格子 node
 @interface ItemNode : ASTextCellNode
 -(instancetype)initWithText:(NSString *)text;
 @end
