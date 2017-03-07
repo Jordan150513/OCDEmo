@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
+// 用AsyncDisplayKit实现的
 #import "ViewController.h"
+//用Apple源生控件实现的
+#import "NativeViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,6 +24,7 @@
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     self.window.backgroundColor = [UIColor whiteColor];
     ViewController * vc = [[ViewController alloc] init];
+//    NativeViewController * vc = [[NativeViewController alloc] init];
     UINavigationController * navc = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = navc;
     [self.window makeKeyWindow];

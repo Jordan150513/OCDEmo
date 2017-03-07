@@ -52,7 +52,7 @@
 }
 
 -(ASCellNode *)collectionNode:(ASCollectionNode *)collectionNode nodeForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-NSString * text = [kind isEqualToString:UICollectionElementKindSectionHeader]?@"Header":@"Footer";
+  NSString * text = [kind isEqualToString:UICollectionElementKindSectionHeader]?@"Header":@"Footer";
     SupplementaryNode * node = [[SupplementaryNode alloc] initWithText:text];
     BOOL isHeaderSection = [kind isEqualToString:UICollectionElementKindSectionHeader];
     node.backgroundColor = isHeaderSection?[UIColor blueColor]:[UIColor redColor];

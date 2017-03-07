@@ -20,6 +20,7 @@
 		DC23CFBA1E6E8675002D5B21 /* AsyncDisplayKitCollectionViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC23CFB91E6E8675002D5B21 /* AsyncDisplayKitCollectionViewUITests.m */; };
 		DC23CFCA1E6E936A002D5B21 /* SupplementaryNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC23CFC91E6E936A002D5B21 /* SupplementaryNode.m */; };
 		DC23CFCD1E6E9CF5002D5B21 /* ItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = DC23CFCC1E6E9CF5002D5B21 /* ItemNode.m */; };
+		DC23CFD11E6EADFB002D5B21 /* NativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC23CFD01E6EADFB002D5B21 /* NativeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		DC23CFC91E6E936A002D5B21 /* SupplementaryNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupplementaryNode.m; sourceTree = "<group>"; };
 		DC23CFCB1E6E9CF5002D5B21 /* ItemNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemNode.h; sourceTree = "<group>"; };
 		DC23CFCC1E6E9CF5002D5B21 /* ItemNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemNode.m; sourceTree = "<group>"; };
+		DC23CFCF1E6EADFB002D5B21 /* NativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeViewController.h; sourceTree = "<group>"; };
+		DC23CFD01E6EADFB002D5B21 /* NativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeViewController.m; sourceTree = "<group>"; };
 		E0A5F399A8E37E7E7DCF7ACA /* Pods-AsyncDisplayKitCollectionViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsyncDisplayKitCollectionViewUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AsyncDisplayKitCollectionViewUITests/Pods-AsyncDisplayKitCollectionViewUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,11 +127,10 @@
 		DC23CF931E6E8674002D5B21 /* AsyncDisplayKitCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				DC23CFC71E6E9302002D5B21 /* View */,
+				DC23CFCE1E6EAD80002D5B21 /* UICollectionView */,
+				DC23CFC71E6E9302002D5B21 /* ASCollectionNode */,
 				DC23CF971E6E8674002D5B21 /* AppDelegate.h */,
 				DC23CF981E6E8674002D5B21 /* AppDelegate.m */,
-				DC23CF9A1E6E8674002D5B21 /* ViewController.h */,
-				DC23CF9B1E6E8674002D5B21 /* ViewController.m */,
 				DC23CF9D1E6E8674002D5B21 /* Main.storyboard */,
 				DC23CFA01E6E8674002D5B21 /* Assets.xcassets */,
 				DC23CFA21E6E8674002D5B21 /* LaunchScreen.storyboard */,
@@ -164,15 +166,26 @@
 			path = AsyncDisplayKitCollectionViewUITests;
 			sourceTree = "<group>";
 		};
-		DC23CFC71E6E9302002D5B21 /* View */ = {
+		DC23CFC71E6E9302002D5B21 /* ASCollectionNode */ = {
 			isa = PBXGroup;
 			children = (
+				DC23CF9A1E6E8674002D5B21 /* ViewController.h */,
+				DC23CF9B1E6E8674002D5B21 /* ViewController.m */,
 				DC23CFC81E6E936A002D5B21 /* SupplementaryNode.h */,
 				DC23CFC91E6E936A002D5B21 /* SupplementaryNode.m */,
 				DC23CFCB1E6E9CF5002D5B21 /* ItemNode.h */,
 				DC23CFCC1E6E9CF5002D5B21 /* ItemNode.m */,
 			);
-			name = View;
+			name = ASCollectionNode;
+			sourceTree = "<group>";
+		};
+		DC23CFCE1E6EAD80002D5B21 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				DC23CFCF1E6EADFB002D5B21 /* NativeViewController.h */,
+				DC23CFD01E6EADFB002D5B21 /* NativeViewController.m */,
+			);
+			name = UICollectionView;
 			sourceTree = "<group>";
 		};
 		E3713D56B179A575DF3DF74B /* Frameworks */ = {
@@ -486,6 +499,7 @@
 				DC23CFCA1E6E936A002D5B21 /* SupplementaryNode.m in Sources */,
 				DC23CF991E6E8674002D5B21 /* AppDelegate.m in Sources */,
 				DC23CF961E6E8674002D5B21 /* main.m in Sources */,
+				DC23CFD11E6EADFB002D5B21 /* NativeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
