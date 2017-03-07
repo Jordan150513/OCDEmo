@@ -49,6 +49,14 @@
     
 }
 
+- (void)dealloc
+{
+    self.collectionNode.dataSource = nil;
+    self.collectionNode.delegate = nil;
+    
+    NSLog(@"ViewController is deallocing");
+}
+
 #pragma mark - dataSource
 -(ASCellNodeBlock)collectionNode:(ASCollectionNode *)collectionNode nodeBlockForItemAtIndexPath:(NSIndexPath *)indexPath{
     // 组内的 cell 单元格的定义
