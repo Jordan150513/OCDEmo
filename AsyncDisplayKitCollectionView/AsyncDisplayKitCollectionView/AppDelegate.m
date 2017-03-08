@@ -14,6 +14,15 @@
 // 用GIFNetworkImageNode实现的gif动图的展示 跟SDWebImage对比
 #import "GIFNetworkImageNodeViewController.h"
 
+// ASViewController 和 tabBar 的Demo 跟源生的实现方式进行对比 看好处在哪里 有什么不同的
+// UIWindow 的自定义的子类
+#import "WindowWithStatusBarUnderlay.h"
+//tabBar 三个控制器
+#import "PhotoFeedListKitViewController.h"
+#import "PhotoFeedNodeController.h"
+#import "PhotoFeedViewController.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -22,7 +31,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+  
+    /*
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     self.window.backgroundColor = [UIColor whiteColor];
     // 用AsyncDisplayKit实现的 CollectionView
@@ -35,6 +45,30 @@
     self.window.rootViewController = navc;
     [self.window makeKeyWindow];
     [self.window makeKeyAndVisible];
+
+   */
+    //***********************************************//
+    //****** ASViewController 和 tabBar 的Demo*******//
+    //***********************************************//
+    
+    // 这个UIWindow的子类window 对于 设置status bar opaque(不透明)是很有必要的
+    _window = [[WindowWithStatusBarUnderlay alloc] init];
+    _window.backgroundColor = [UIColor whiteColor];
+    
+    // 设置TabBar的各个控制器
+    
+    // ASDK Home Feed viewController & navController
+    
+    
+    // ListKit Home Feed viewController & navController
+    
+    
+    
+    // UIKit Home Feed viewController & navController
+    
+    
+    // UITabBarController
+    
     
     return YES;
 }
