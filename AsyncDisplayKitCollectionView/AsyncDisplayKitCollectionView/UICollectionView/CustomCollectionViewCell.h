@@ -11,6 +11,6 @@
 @interface CustomCollectionViewCell : UICollectionViewCell
 
 @property(nonatomic,strong)NSString * text;
--(instancetype)initWIthText:(NSString *)text;
+-(instancetype)initWithCollectionView:(UICollectionView *)collectionView dequeueReusableCellWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath;
 -(void)updateCellText:(NSString *)text;
 @end

@@ -13,29 +13,17 @@
 @end
 
 @implementation CustomCollectionViewCell
-//-(instancetype)initWIthText:(NSString *)text{
-//    self = [super init];
-//    if (self!=nil) {
-//        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-//        _textLabel.font = [UIFont systemFontOfSize:15.0];
-//        _textLabel.textColor = [UIColor whiteColor];
-//        _textLabel.backgroundColor = [UIColor greenColor];
-//        [_textLabel setCenter: self.center];
-//        [_textLabel setText:text];
-//        [self addSubview:_textLabel];
-//        [self updateBackgroundColor];
-//    }
-//    return self;
-//}
 
+//这个int不会被调用，所以 我们重新写了一个可以实现复用init方法，调用这个方法，不知道能不能实现 创建cell的时候 就有了Label成员变量，不会在设置label text的时候才去懒加载创建label
 -(instancetype) init{
-    self = [super init];
-    if (self!=nil) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-        _textLabel.font = [UIFont systemFontOfSize:15.0];
-        _textLabel.textColor = [UIColor whiteColor];
-        [_textLabel setCenter: self.center];
-        [self addSubview:_textLabel];
+
+    if (self = [super init]) {
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 30)];
+        label.font = [UIFont systemFontOfSize:15.0];
+        label.textColor = [UIColor whiteColor];
+        [label setCenter: self.center];
+        _textLabel = label;
+        [self addSubview:label];
         [self updateBackgroundColor];
     }
     return self;
@@ -48,11 +36,11 @@
 
 -(UILabel *)textLabel{
     if (_textLabel==nil) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 30)];
         _textLabel.font = [UIFont systemFontOfSize:15.0];
-        _textLabel.textColor = [UIColor whiteColor];
-        _textLabel.backgroundColor = [UIColor greenColor];
-        [_textLabel setCenter: self.center];
+        _textLabel.textColor = [UIColor greenColor];
+//        _textLabel.backgroundColor = [UIColor greenColor];
+//        [_textLabel setCenter: self.center];
         [self addSubview:_textLabel];
     }
     return _textLabel;

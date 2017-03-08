@@ -14,28 +14,14 @@
 @end
 
 @implementation HeaderFooterCollectionReusableView
-//-(instancetype)initWithText:(NSString *)text{
-//    if (self = [super init]) {
-//        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-//        _textLabel.font = [UIFont systemFontOfSize:18.0];
-//        _textLabel.textColor = [UIColor whiteColor];
-//        _textLabel.backgroundColor = [UIColor greenColor];
-//        [_textLabel setText:text];
-//        [_textLabel setCenter:self.center];
-//        [self addSubview:_textLabel];
-//    }
-//    
-//    return self;
-//}
 
 -(instancetype) init{
     if (self = [super init]) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
-        _textLabel.font = [UIFont systemFontOfSize:18.0];
-        _textLabel.textColor = [UIColor whiteColor];
-        _textLabel.backgroundColor = [UIColor greenColor];
-        [_textLabel setCenter:self.center];
-        [self addSubview:_textLabel];
+        UILabel * label  = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        label.font = [UIFont systemFontOfSize:18.0];
+        label.textColor = [UIColor greenColor];
+        [self addSubview:label];
+        _textLabel = label;
     }
     
     return self;
@@ -48,9 +34,9 @@
     if (_textLabel==nil) {
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
         _textLabel.font = [UIFont systemFontOfSize:15.0];
-        _textLabel.textColor = [UIColor whiteColor];
-        _textLabel.backgroundColor = [UIColor greenColor];
-        [_textLabel setCenter: self.center];
+        _textLabel.textColor = [UIColor greenColor];
+//        _textLabel.backgroundColor = [UIColor greenColor];
+//        [_textLabel setCenter: self.center]; // 就这句话 非常讨厌 引起的label显示 各种问题 不显示 显示错位置
         [self addSubview:_textLabel];
     }
     return _textLabel;

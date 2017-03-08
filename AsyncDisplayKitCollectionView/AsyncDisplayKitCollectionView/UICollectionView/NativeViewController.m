@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Apple Native CollectionView";
+    
 //    CustomCollectionViewFlowLayout * layout = [[CustomCollectionViewFlowLayout alloc] init];
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
     //设置item尺寸
@@ -56,11 +57,14 @@
     return 10;
 }
 
-// 自定义 collectionView 的cell
+// 自定义 collectionView 的 cell
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString * reuseIdentifierCell = @"cell";
     NSString * text = [NSString stringWithFormat:@"(%ld,%ld)say hi.",indexPath.section,indexPath.item];
     CustomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-
+    if (!cell) {
+        cell = [[CustomCollectionViewCell alloc] init];
+    }
     [cell updateCellText:text];
     return cell;
 }
@@ -68,9 +72,12 @@
 // 自定义 header footerView
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     BOOL isHeader = [kind isEqualToString:UICollectionElementKindSectionHeader];
-    NSString * text = isHeader?@"header":@"footer";
-    
-    HeaderFooterCollectionReusableView * headerFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:isHeader?UICollectionElementKindSectionHeader:UICollectionElementKindSectionFooter withReuseIdentifier:@"headerFooter" forIndexPath:indexPath];
+    NSString * text = isHeader? [NSString stringWithFormat:@"header-%ld",indexPath.section]:[NSString stringWithFormat:@"footer-%ld",indexPath.section];
+    static NSString * reuseIdentifierHF = @"headerFooter";
+    HeaderFooterCollectionReusableView * headerFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:isHeader?UICollectionElementKindSectionHeader:UICollectionElementKindSectionFooter withReuseIdentifier:reuseIdentifierHF forIndexPath:indexPath];
+    if (!headerFooterView) {
+        headerFooterView = [[HeaderFooterCollectionReusableView alloc] init];
+    }
     [headerFooterView updateHeaderFooterViewText:text];
     [headerFooterView setBackgroundColor:isHeader?[UIColor redColor]:[UIColor blueColor]];
     return headerFooterView;
@@ -79,15 +86,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
