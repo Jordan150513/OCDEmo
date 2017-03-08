@@ -61,9 +61,10 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * reuseIdentifierCell = @"cell";
     NSString * text = [NSString stringWithFormat:@"(%ld,%ld)say hi.",indexPath.section,indexPath.item];
-    CustomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    CustomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifierCell forIndexPath:indexPath];
     if (!cell) {
         cell = [[CustomCollectionViewCell alloc] init];
+        cell.backgroundColor = [UIColor lightGrayColor];
     }
     [cell updateCellText:text];
     return cell;

@@ -24,7 +24,9 @@
         [label setCenter: self.center];
         _textLabel = label;
         [self addSubview:label];
-        [self updateBackgroundColor];
+        //设置默认的背景颜色就好 不需要再添加判断 状态改变的时候 添加状态变化之后的颜色就好
+        self.backgroundColor = [UIColor lightGrayColor];
+//        [self updateBackgroundColor];
     }
     return self;
 }
