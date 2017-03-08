@@ -59,26 +59,18 @@
 // 自定义 collectionView 的cell
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSString * text = [NSString stringWithFormat:@"(%ld,%ld)say hi.",indexPath.section,indexPath.item];
-//    CustomCollectionViewCell * cell = [[CustomCollectionViewCell alloc] initWIthText:text];
     CustomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    if (cell==nil) {
-        cell = [[CustomCollectionViewCell alloc] initWIthText:text];
-    }
+
     [cell updateCellText:text];
-    
     return cell;
 }
 
+// 自定义 header footerView
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     BOOL isHeader = [kind isEqualToString:UICollectionElementKindSectionHeader];
     NSString * text = isHeader?@"header":@"footer";
-
-//    HeaderFooterCollectionReusableView * headerFooterView = [[HeaderFooterCollectionReusableView alloc] initWithText:text];
     
     HeaderFooterCollectionReusableView * headerFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:isHeader?UICollectionElementKindSectionHeader:UICollectionElementKindSectionFooter withReuseIdentifier:@"headerFooter" forIndexPath:indexPath];
-    if (headerFooterView==nil) {
-        headerFooterView = [[HeaderFooterCollectionReusableView alloc] initWithText:text];
-    }
     [headerFooterView updateHeaderFooterViewText:text];
     [headerFooterView setBackgroundColor:isHeader?[UIColor redColor]:[UIColor blueColor]];
     return headerFooterView;

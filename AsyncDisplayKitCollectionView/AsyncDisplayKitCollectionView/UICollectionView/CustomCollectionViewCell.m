@@ -13,22 +13,49 @@
 @end
 
 @implementation CustomCollectionViewCell
--(instancetype)initWIthText:(NSString *)text{
+//-(instancetype)initWIthText:(NSString *)text{
+//    self = [super init];
+//    if (self!=nil) {
+//        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+//        _textLabel.font = [UIFont systemFontOfSize:15.0];
+//        _textLabel.textColor = [UIColor whiteColor];
+//        _textLabel.backgroundColor = [UIColor greenColor];
+//        [_textLabel setCenter: self.center];
+//        [_textLabel setText:text];
+//        [self addSubview:_textLabel];
+//        [self updateBackgroundColor];
+//    }
+//    return self;
+//}
+
+-(instancetype) init{
     self = [super init];
     if (self!=nil) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
         _textLabel.font = [UIFont systemFontOfSize:15.0];
         _textLabel.textColor = [UIColor whiteColor];
         [_textLabel setCenter: self.center];
-        [_textLabel setText:text];
         [self addSubview:_textLabel];
-        
         [self updateBackgroundColor];
     }
     return self;
 }
+
 -(void)updateCellText:(NSString *)text{
-    [_textLabel setText:text];
+    [self.textLabel setText:text];
+    
+}
+
+-(UILabel *)textLabel{
+    if (_textLabel==nil) {
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+        _textLabel.font = [UIFont systemFontOfSize:15.0];
+        _textLabel.textColor = [UIColor whiteColor];
+        _textLabel.backgroundColor = [UIColor greenColor];
+        [_textLabel setCenter: self.center];
+        [self addSubview:_textLabel];
+    }
+    return _textLabel;
 }
 
 - (void)updateBackgroundColor

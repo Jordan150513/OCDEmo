@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HeaderFooterCollectionReusableView : UICollectionReusableView
+@property(nonatomic,strong)NSString * text;
 -(instancetype)initWithText:(NSString *)text;
 -(void)updateHeaderFooterViewText:(NSString *)text;
 @end
