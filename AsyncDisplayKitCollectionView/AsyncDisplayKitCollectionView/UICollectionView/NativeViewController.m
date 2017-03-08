@@ -9,6 +9,7 @@
 #import "NativeViewController.h"
 #import "CustomCollectionViewCell.h"
 #import "HeaderFooterCollectionReusableView.h"
+//#import "CustomCollectionViewFlowLayout.h"
 
 @interface NativeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property(nonatomic,strong)UICollectionView * collectionView;
@@ -19,8 +20,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Apple Native CollectionView";
-    UICollectionViewLayout * layout = [[UICollectionViewLayout alloc] init];
-//    layout.
+//    CustomCollectionViewFlowLayout * layout = [[CustomCollectionViewFlowLayout alloc] init];
+    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
+    //设置item尺寸
+    layout.itemSize = CGSizeMake(100, 50);
+    // 设置item之间的间隔
+    layout.minimumInteritemSpacing = 0;
+    // 设置行之间间隔
+    layout.minimumLineSpacing = 20;
+    // 设置组的内边距
+    layout.sectionInset = UIEdgeInsetsMake(20, 0, 0, 0);
+    layout.headerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
+    layout.footerReferenceSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
     
     self.collectionView.dataSource = self;
@@ -31,9 +42,14 @@
     [self.collectionView registerClass:[CustomCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     // collectionView header footer 注册 类
     [self.collectionView registerClass:[HeaderFooterCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerFooter"];
+    [self.collectionView registerClass:[HeaderFooterCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"headerFooter"];
 
     [self.view addSubview:self.collectionView];
     
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 100;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -43,7 +59,12 @@
 // 自定义 collectionView 的cell
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSString * text = [NSString stringWithFormat:@"(%ld,%ld)say hi.",indexPath.section,indexPath.item];
-    CustomCollectionViewCell * cell = [[CustomCollectionViewCell alloc] initWIthText:text];
+//    CustomCollectionViewCell * cell = [[CustomCollectionViewCell alloc] initWIthText:text];
+    CustomCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    if (cell==nil) {
+        cell = [[CustomCollectionViewCell alloc] initWIthText:text];
+    }
+    [cell updateCellText:text];
     
     return cell;
 }
@@ -52,7 +73,13 @@
     BOOL isHeader = [kind isEqualToString:UICollectionElementKindSectionHeader];
     NSString * text = isHeader?@"header":@"footer";
 
-    HeaderFooterCollectionReusableView * headerFooterView = [[HeaderFooterCollectionReusableView alloc] initWithText:text];
+//    HeaderFooterCollectionReusableView * headerFooterView = [[HeaderFooterCollectionReusableView alloc] initWithText:text];
+    
+    HeaderFooterCollectionReusableView * headerFooterView = [collectionView dequeueReusableSupplementaryViewOfKind:isHeader?UICollectionElementKindSectionHeader:UICollectionElementKindSectionFooter withReuseIdentifier:@"headerFooter" forIndexPath:indexPath];
+    if (headerFooterView==nil) {
+        headerFooterView = [[HeaderFooterCollectionReusableView alloc] initWithText:text];
+    }
+    [headerFooterView updateHeaderFooterViewText:text];
     [headerFooterView setBackgroundColor:isHeader?[UIColor redColor]:[UIColor blueColor]];
     return headerFooterView;
 }

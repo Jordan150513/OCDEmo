@@ -15,7 +15,7 @@
 @implementation HeaderFooterCollectionReusableView
 -(instancetype)initWithText:(NSString *)text{
     if (self = [super init]) {
-        _textLabel = [[UILabel alloc] init];
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         _textLabel.font = [UIFont systemFontOfSize:18.0];
         _textLabel.textColor = [UIColor whiteColor];
         [_textLabel setText:text];
@@ -24,5 +24,9 @@
     }
     
     return self;
+}
+
+-(void)updateHeaderFooterViewText:(NSString *)text{
+    [_textLabel setText:text];
 }
 @end

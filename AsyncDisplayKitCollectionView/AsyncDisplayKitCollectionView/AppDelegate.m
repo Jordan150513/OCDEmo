@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 // 用AsyncDisplayKit实现的
-#import "ViewController.h"
+//#import "ViewController.h"
 //用Apple源生控件实现的
 #import "NativeViewController.h"
 
@@ -20,7 +20,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     self.window.backgroundColor = [UIColor whiteColor];
 //    ViewController * vc = [[ViewController alloc] init];

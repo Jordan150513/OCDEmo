@@ -16,7 +16,7 @@
 -(instancetype)initWIthText:(NSString *)text{
     self = [super init];
     if (self!=nil) {
-        _textLabel = [[UILabel alloc] init];
+        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
         _textLabel.font = [UIFont systemFontOfSize:15.0];
         _textLabel.textColor = [UIColor whiteColor];
         [_textLabel setCenter: self.center];
@@ -27,6 +27,10 @@
     }
     return self;
 }
+-(void)updateCellText:(NSString *)text{
+    [_textLabel setText:text];
+}
+
 - (void)updateBackgroundColor
 {
     if (self.highlighted) {

@@ -6,8 +6,9 @@
 //  Copyright © 2017年 Fang. All rights reserved.
 //
 
-#import "ViewController.h"
+//#import "ViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface NativeViewController : ViewController
+@interface NativeViewController : UIViewController
 
 @end

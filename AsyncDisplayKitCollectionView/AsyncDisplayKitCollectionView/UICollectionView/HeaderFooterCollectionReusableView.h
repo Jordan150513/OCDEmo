@@ -10,4 +10,5 @@
 
 @interface HeaderFooterCollectionReusableView : UICollectionReusableView
 -(instancetype)initWithText:(NSString *)text;
+-(void)updateHeaderFooterViewText:(NSString *)text;
 @end
