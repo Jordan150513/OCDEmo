@@ -9,8 +9,10 @@
 #import "AppDelegate.h"
 // 用AsyncDisplayKit实现的
 //#import "ViewController.h"
-//用Apple源生控件实现的
+// 用Apple源生控件实现的
 #import "NativeViewController.h"
+// 用GIFNetworkImageNode实现的gif动图的展示 跟SDWebImage对比
+#import "GIFNetworkImageNodeViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,8 +25,12 @@
     
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     self.window.backgroundColor = [UIColor whiteColor];
+    // 用AsyncDisplayKit实现的 CollectionView
 //    ViewController * vc = [[ViewController alloc] init];
-    NativeViewController * vc = [[NativeViewController alloc] init];
+    // 用 UICollectionView 实现的 CollectionView
+//    NativeViewController * vc = [[NativeViewController alloc] init];
+    // GIFNetworkImageNode 实现的gif 图片下载 和 SD进行对比 
+    GIFNetworkImageNodeViewController * vc = [[GIFNetworkImageNodeViewController alloc] init];
     UINavigationController * navc = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = navc;
     [self.window makeKeyWindow];
