@@ -53,7 +53,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
             allowedPrimitiveTypes = @[
                 @"BOOL", @"float", @"int", @"long", @"double", @"short",
-                //and some famous aliases
+                //and some famous aliases（别名）
                 @"NSInteger", @"NSUInteger",
                 @"Block"
             ];
@@ -70,11 +70,13 @@ static JSONKeyMapper* globalKeyMapper = nil;
         }
     });
 }
-
+// JSON model 重要的初始化操作
 -(void)__setup__
 {
     //if first instance of this model, generate the property list
+    // 如果是这个model实例的类 没有关联任何的属性 那就 产生出 property list 就是我们model里面声明的属性
     if (!objc_getAssociatedObject(self.class, &kClassPropertiesKey)) {
+        // 如果没有给这个类关联 属性 那么就需要获取 这个model类的属性列表 ？？？
         [self __inspectProperties];
     }
 
@@ -90,6 +92,8 @@ static JSONKeyMapper* globalKeyMapper = nil;
     }
 }
 
+// JSON model 最初的初始化
+// 重要的实现方法
 -(id)init
 {
     self = [super init];
@@ -99,15 +103,16 @@ static JSONKeyMapper* globalKeyMapper = nil;
     }
     return self;
 }
-
+// 将NSString 转换成NSData之后 进行解析 model 的解析
 -(instancetype)initWithData:(NSData *)data error:(NSError *__autoreleasing *)err
 {
     //check for nil input
+    // 如果是nil 还转啥model
     if (!data) {
         if (err) *err = [JSONModelError errorInputIsNil];
         return nil;
     }
-    //read the json
+    //read the json 读JSON串 序列化 转换成 字典
     JSONModelError* initError = nil;
     id obj = [NSJSONSerialization JSONObjectWithData:data
                                              options:kNilOptions
@@ -119,6 +124,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
     }
 
     //init with dictionary
+    // 根据序列化的JSON串的字典 初始化model
     id objModel = [self initWithDictionary:obj error:&initError];
     if (initError && err) *err = initError;
     return objModel;
@@ -135,6 +141,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 -(id)initWithString:(NSString *)string usingEncoding:(NSStringEncoding)encoding error:(JSONModelError**)err
 {
     //check for nil input
+    // 如果是nil 还搞啥对象 直接返回nil
     if (!string) {
         if (err) *err = [JSONModelError errorInputIsNil];
         return nil;
@@ -146,23 +153,40 @@ static JSONKeyMapper* globalKeyMapper = nil;
     return objModel;
 
 }
-
+// 传过来字典 进行转model
 -(id)initWithDictionary:(NSDictionary*)dict error:(NSError**)err
 {
     //check for nil input
+    //如果字典是空的 还搞毛线对象
     if (!dict) {
         if (err) *err = [JSONModelError errorInputIsNil];
         return nil;
     }
 
     //invalid input, just create empty instance
+    // 如果是无效的输入 就创建一个空的实例model对象就可以了
     if (![dict isKindOfClass:[NSDictionary class]]) {
         if (err) *err = [JSONModelError errorInvalidDataWithMessage:@"Attempt to initialize JSONModel object using initWithDictionary:error: but the dictionary parameter was not an 'NSDictionary'."];
         return nil;
     }
 
     //create a class instance
-    self = [self init];
+    // 有效的字典对象 就需要转换成model了
+    
+    self = [self init]; // 这个里面做了很多事情 需要好好看看
+    // 在这句话之前 self 就已经是这个样子了 这是在哪里做的？  需要确定
+    /*
+     * (lldb) po self
+     
+     <CountryModel>
+     [id]: 0
+     [country]: <nil>
+     [isInEurope]: 0
+     [dialCode]: <nil>
+     </CountryModel>
+     
+     */
+    
     if (!self) {
 
         //super init didn't succeed
@@ -171,22 +195,36 @@ static JSONKeyMapper* globalKeyMapper = nil;
     }
 
     //check incoming data structure
+    // 检查下一个 传过来的数据结构 的属性名称 跟 需要的属性名称 全不全 一样不一样
     if (![self __doesDictionary:dict matchModelWithKeyMapper:self.__keyMapper error:err]) {
         return nil;
     }
 
     //import the data from a dictionary
+    // 传过来的属性keys 和 model里面需要的属性都是一致的了 下面就要 从 字典里 导入 数据 给model 也就是self 啦
     if (![self __importDictionary:dict withKeyMapper:self.__keyMapper validation:YES error:err]) {
         return nil;
     }
 
     //run any custom model validation
+    // 自定义 model 的认可
     if (![self validate:err]) {
         return nil;
     }
 
     //model is valid! yay!
+    // model 就生成了
     return self;
+    // 这个时候self 就变成了这个样子
+    /*
+     * <CountryModel>
+     [id]: 10
+     [country]: Germany
+     [isInEurope]: 1
+     [dialCode]: 49
+     </CountryModel>
+
+     */
 }
 
 -(JSONKeyMapper*)__keyMapper
@@ -198,6 +236,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 -(BOOL)__doesDictionary:(NSDictionary*)dict matchModelWithKeyMapper:(JSONKeyMapper*)keyMapper error:(NSError**)err
 {
     //check if all required properties are present
+    //  dict 里面是需要转换成model的数据
     NSArray* incomingKeysArray = [dict allKeys];
     NSMutableSet* requiredProperties = [self __requiredPropertyNames].mutableCopy;
     NSSet* incomingKeys = [NSSet setWithArray: incomingKeysArray];
@@ -232,9 +271,11 @@ static JSONKeyMapper* globalKeyMapper = nil;
     }
 
     //check for missing input keys
+    // 确认 传入的数据 属性是否有缺少的
     if (![requiredProperties isSubsetOfSet:incomingKeys]) {
 
         //get a list of the missing properties
+        // 返回缺少的属性 名称
         [requiredProperties minusSet:incomingKeys];
 
         //not all required properties are in - invalid input
@@ -267,19 +308,31 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
     return string;
 }
-
+// // 从 字典里 导入 数据 给 self model 赋值
 -(BOOL)__importDictionary:(NSDictionary*)dict withKeyMapper:(JSONKeyMapper*)keyMapper validation:(BOOL)validation error:(NSError**)err
 {
     //loop over the incoming keys and set self's properties
+    // 循环遍历 即将到来的 key 然后设置 self 的属性 就是给逐一赋值
+    /*  po [self __properties__]
+     * <__NSArrayI 0x174058810>(
+         @property primitive id (Setters = []),
+         @property NSString* country (Standard JSON type, Setters = []),
+         @property primitive isInEurope (Setters = []),
+         @property NSString* dialCode (Standard JSON type, Setters = [])
+       )
+     */
+    // 对数组 [self __properties__] 逐一进行操作
     for (JSONModelClassProperty* property in [self __properties__]) {
 
         //convert key name to model keys, if a mapper is provided
+        // 如果 mapper 是存在的 就 转换 key name 到model 的属性
         NSString* jsonKeyPath = (keyMapper||globalKeyMapper) ? [self __mapString:property.name withKeyMapper:keyMapper] : property.name;
         //JMLog(@"keyPath: %@", jsonKeyPath);
 
         //general check for data type compliance
         id jsonValue;
         @try {
+            // 根据 self 的property 名称 从字典里获取相应的值
             jsonValue = [dict valueForKeyPath: jsonKeyPath];
         }
         @catch (NSException *exception) {
@@ -287,6 +340,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
         }
 
         //check for Optional properties
+        // 获取到的属性的值 是空的
         if (isNull(jsonValue)) {
             //skip this property, continue with next property
             if (property.isOptional || !validation) continue;
@@ -299,7 +353,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
             }
             return NO;
         }
-
+        // 获取到相应的属性的值
         Class jsonValueClass = [jsonValue class];
         BOOL isValueOfAllowedType = NO;
 
@@ -327,12 +381,14 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
             // check for custom setter, than the model doesn't need to do any guessing
             // how to read the property's value from JSON
+            // 给 model 相应的属性赋值了
             if ([self __customSetValue:jsonValue forProperty:property]) {
                 //skip to next JSON key
+                //赋值 成功 接着进行 下一个 属性的赋值
                 continue;
             };
 
-            // 0) handle primitives
+            // 0) handle primitives（原始的） 赋值没有成功 就要进行原始的初始化 赋值了
             if (property.type == nil && property.structName==nil) {
 
                 //generic setter
@@ -345,6 +401,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
             }
 
             // 0.5) handle nils
+            // 属性存在 但是属性的值 不存在 就赋值为nil
             if (isNull(jsonValue)) {
                 if ([self valueForKey:property.name] != nil) {
                     [self setValue:nil forKey: property.name];
@@ -354,9 +411,11 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
 
             // 1) check if property is itself a JSONModel
+            // 处理嵌套 看这一层的 property.type  是不是另外一个 JSONModel
             if ([self __isJSONModelSubClass:property.type]) {
 
                 //initialize the property's model, store it
+//                初始化 内存的JSON Model
                 JSONModelError* initErr = nil;
                 id value = [[property.type alloc] initWithDictionary: jsonValue error:&initErr];
 
@@ -468,7 +527,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
                 }
             }
         }
-    }
+    }// for - in 遍历结束
 
     return YES;
 }
@@ -486,9 +545,11 @@ static JSONKeyMapper* globalKeyMapper = nil;
 }
 
 //returns a set of the required keys for the model
+//  返回本 model 需要的属性的名称的集合
 -(NSMutableSet*)__requiredPropertyNames
 {
     //fetch the associated property names
+    // 都是用的 关联属性 实现 的
     NSMutableSet* classRequiredPropertyNames = objc_getAssociatedObject(self.class, &kClassRequiredPropertyNamesKey);
 
     if (!classRequiredPropertyNames) {
@@ -523,7 +584,9 @@ static JSONKeyMapper* globalKeyMapper = nil;
     return [classProperties allValues];
 }
 
+// 关键的实现方法
 //inspects the class, get's a list of the class properties
+// 获取类的属性列表 并且
 -(void)__inspectProperties
 {
     //JMLog(@"Inspect class: %@", [self class]);
@@ -531,18 +594,23 @@ static JSONKeyMapper* globalKeyMapper = nil;
     NSMutableDictionary* propertyIndex = [NSMutableDictionary dictionary];
 
     //temp variables for the loops
+    // 循环的临时变量
     Class class = [self class];
     NSScanner* scanner = nil;
     NSString* propertyType = nil;
 
     // inspect inherited properties up to the JSONModel class
+    // 审查 继承的 属性
     while (class != [JSONModel class]) {
         //JMLog(@"inspecting: %@", NSStringFromClass(class));
 
         unsigned int propertyCount;
+        // objc_property_t *  runtime 源码中定义的类型 就是property的属性表的类型
+        //  获得类的属性列表的copy值
         objc_property_t *properties = class_copyPropertyList(class, &propertyCount);
 
         //loop over the class properties
+        // 循环每一个 propertie 做什么操作呢：转换成JSONModelClassProperty类型的 并且存储对应的类型 名字 属性
         for (unsigned int i = 0; i < propertyCount; i++) {
 
             JSONModelClassProperty* p = [[JSONModelClassProperty alloc] init];
@@ -554,7 +622,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
             //JMLog(@"property: %@", p.name);
 
-            //get property attributes
+            //get property attributes 获取成员属性变量的属性
             const char *attrs = property_getAttributes(property);
             NSString* propertyAttributes = @(attrs);
             NSArray* attributeItems = [propertyAttributes componentsSeparatedByString:@","];
@@ -564,7 +632,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
                 continue; //to next property
             }
 
-            //check for 64b BOOLs
+            //check for 64b BOOLs 64位的bool值 将bool值当做 结构体 方便一起转换
             if ([propertyAttributes hasPrefix:@"Tc,"]) {
                 //mask BOOLs as structs so they can have custom converters
                 p.structName = @"BOOL";
@@ -576,18 +644,18 @@ static JSONKeyMapper* globalKeyMapper = nil;
             [scanner scanUpToString:@"T" intoString: nil];
             [scanner scanString:@"T" intoString:nil];
 
-            //check if the property is an instance of a class
+            //check if the property is an instance of a class 看属性类型是不是一个类 就是嵌套的一个JSONModel类的实例
             if ([scanner scanString:@"@\"" intoString: &propertyType]) {
 
                 [scanner scanUpToCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"\"<"]
                                         intoString:&propertyType];
 
                 //JMLog(@"type: %@", propertyClassName);
-                p.type = NSClassFromString(propertyType);
+                p.type = NSClassFromString(propertyType);  // 是另外一个嵌套的model
                 p.isMutable = ([propertyType rangeOfString:@"Mutable"].location != NSNotFound);
                 p.isStandardJSONType = [allowedJSONTypes containsObject:p.type];
 
-                //read through the property protocols
+                //read through the property protocols 看属性有没有遵守什么协议 就是有么有明确标明“<>”
                 while ([scanner scanString:@"<" intoString:NULL]) {
 
                     NSString* protocolName = nil;
@@ -597,14 +665,16 @@ static JSONKeyMapper* globalKeyMapper = nil;
                     if ([protocolName isEqualToString:@"Optional"]) {
                         p.isOptional = YES;
                     } else if([protocolName isEqualToString:@"Index"]) {
+                        // 咋这么直接 忽略警告
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
                         p.isIndex = YES;
 #pragma GCC diagnostic pop
 
+                        // 设置关联属性
                         objc_setAssociatedObject(
                                                  self.class,
-                                                 &kIndexPropertyNameKey,
+                                                 &kIndexPropertyNameKey,    // 这里有一点疑问 这个key值 不太明白
                                                  p.name,
                                                  OBJC_ASSOCIATION_RETAIN // This is atomic
                                                  );
@@ -671,7 +741,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
                 [propertyIndex setValue:p forKey:p.name];
             }
 
-            // generate custom setters and getter
+            // generate custom setters and getter  创建 set get 方法
             if (p)
             {
                 NSString *name = [p.name stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[p.name substringToIndex:1].uppercaseString];
@@ -704,19 +774,20 @@ static JSONKeyMapper* globalKeyMapper = nil;
                 }
             }
         }
-
+// for 循环结束
         free(properties);
 
         //ascend to the super of the class
         //(will do that until it reaches the root class - JSONModel)
         class = [class superclass];
     }
-
+// while 循环结束
+    // 最后  把属性的索引通过关联属性 各类增加一个关联属性 存储到 静态的 &kClassPropertiesKey 属性索引里？？
     //finally store the property index in the static property index
     objc_setAssociatedObject(
                              self.class,
                              &kClassPropertiesKey,
-                             [propertyIndex copy],
+                             [propertyIndex copy], // 将 暂时变量给关联了
                              OBJC_ASSOCIATION_RETAIN // This is atomic
                              );
 }
@@ -841,6 +912,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 }
 
 #pragma mark - custom transformations
+// 给相应的属性 赋值了
 - (BOOL)__customSetValue:(id <NSObject>)value forProperty:(JSONModelClassProperty *)property
 {
     NSString *class = NSStringFromClass([JSONValueTransformer classByResolvingClusterClasses:[value class]]);
