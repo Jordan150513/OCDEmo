@@ -22,8 +22,11 @@
 #import "PhotoFeedNodeController.h"
 #import "PhotoFeedViewController.h"
 
+#import "Utilities.h"
 
-@interface AppDelegate ()
+
+
+@interface AppDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -58,18 +61,45 @@
     // 设置TabBar的各个控制器
     
     // ASDK Home Feed viewController & navController
-    
+    PhotoFeedNodeController * vcASDK = [[PhotoFeedNodeController alloc] init];
+    UINavigationController * navcASDK = [[UINavigationController alloc] initWithRootViewController:vcASDK];
+    navcASDK.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@""] tag:0];
+    navcASDK.hidesBarsOnSwipe = YES;
     
     // ListKit Home Feed viewController & navController
-    
-    
+    PhotoFeedListKitViewController * vcListKit = [[PhotoFeedListKitViewController alloc] init];
+    UINavigationController * navcListKit = [[UINavigationController alloc] initWithRootViewController:vcListKit];
+    navcListKit.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@""] tag:0];
+    navcListKit.hidesBarsOnSwipe = YES;
     
     // UIKit Home Feed viewController & navController
-    
+    PhotoFeedViewController * vcUIKit = [[PhotoFeedViewController alloc] init];
+    UINavigationController * navcUIKit = [[UINavigationController alloc] initWithRootViewController:vcUIKit];
+    navcUIKit.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@""] tag:0];
+    navcUIKit.hidesBarsOnSwipe = YES;
     
     // UITabBarController
+    UITabBarController * tabBarC = [[UITabBarController alloc] init];
+    tabBarC.viewControllers = @[navcUIKit,navcASDK,navcListKit];
+    tabBarC.delegate = self;
+    [[UITabBar appearance] setTintColor:[UIColor darkBlueColor]];
+    
+    _window.rootViewController = tabBarC;
+//    [_window makeKeyWindow];
+    [_window makeKeyAndVisible];
     
     
+    // Nav Bar appearance
+    NSDictionary * attributeDict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [[UINavigationBar appearance] setTitleTextAttributes:attributeDict];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor darkBlueColor]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    
+    // iOS8 hides the status bar in landscape orientation, this forces the status bar hidden status to NO
+//    [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+//    [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    
+//    [UIViewController prefersStatusBarHidden...]替换
     return YES;
 }
 

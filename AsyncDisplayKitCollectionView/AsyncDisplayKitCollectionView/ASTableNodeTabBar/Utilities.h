@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Utilities : NSObject
 
 @end
+
+@interface UIColor (Additions)
++ (UIColor *)darkBlueColor;
++ (UIColor *)lightBlueColor;
+@end
+
+
