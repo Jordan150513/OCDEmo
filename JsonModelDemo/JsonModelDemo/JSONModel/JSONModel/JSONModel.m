@@ -16,10 +16,10 @@
 #import "JSONModelClassProperty.h"
 
 #pragma mark - associated objects names
-static const char * kMapperObjectKey;
-static const char * kClassPropertiesKey;
-static const char * kClassRequiredPropertyNamesKey;
-static const char * kIndexPropertyNameKey;
+static const char * kMapperObjectKey;  // 关联 mapper 用的 custom key mapper JSONKeyMapper*类型的 用来映射的
+static const char * kClassPropertiesKey;  // 关联 propertyIndex 字典里面存的是属性的名字 和 属性的key 用的
+static const char * kClassRequiredPropertyNamesKey;  // 关联 NSMutableSet* classRequiredPropertyNames 用的
+static const char * kIndexPropertyNameKey;  //  关联 p.name 用的 JSONModelClassProperty* p 单一的一个属性
 
 #pragma mark - class static variables
 static NSArray* allowedJSONTypes = nil;
@@ -27,7 +27,7 @@ static NSArray* allowedPrimitiveTypes = nil;
 static JSONValueTransformer* valueTransformer = nil;
 static Class JSONModelClass = NULL;
 
-#pragma mark - model cache
+#pragma mark - model cache model的缓存？？？
 static JSONKeyMapper* globalKeyMapper = nil;
 
 #pragma mark - JSONModel implementation
@@ -70,7 +70,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
         }
     });
 }
-// JSON model 重要的初始化操作
+// JSON model 重要的初始化操作 获取类对象的属性列表
 -(void)__setup__
 {
     //if first instance of this model, generate the property list
@@ -130,6 +130,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
     return objModel;
 }
 
+// 对外的 数据model解析的 接口
 -(id)initWithString:(NSString*)string error:(JSONModelError**)err
 {
     JSONModelError* initError = nil;
@@ -174,7 +175,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
     // 有效的字典对象 就需要转换成model了
     
     self = [self init]; // 这个里面做了很多事情 需要好好看看
-    // 在这句话之前 self 就已经是这个样子了 这是在哪里做的？  需要确定
+    // 在这句话之前 self 就已经是这个样子了 这是在哪里做的？  需要确定 在上面的 init 方法里做的工作
     /*
      * (lldb) po self
      
@@ -545,7 +546,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 }
 
 //returns a set of the required keys for the model
-//  返回本 model 需要的属性的名称的集合
+//  返回本 model 需要的属性的名称的集合 属性链表
 -(NSMutableSet*)__requiredPropertyNames
 {
     //fetch the associated property names
@@ -601,14 +602,41 @@ static JSONKeyMapper* globalKeyMapper = nil;
 
     // inspect inherited properties up to the JSONModel class
     // 审查 继承的 属性
-    while (class != [JSONModel class]) {
+    while (class != [JSONModel class]) { // class 不是JSONModel类 但是是JSONModel的子类
         //JMLog(@"inspecting: %@", NSStringFromClass(class));
 
         unsigned int propertyCount;
         // objc_property_t *  runtime 源码中定义的类型 就是property的属性表的类型
-        //  获得类的属性列表的copy值
+        //  获得类的属性列表的copy值 是一个集合类型的
         objc_property_t *properties = class_copyPropertyList(class, &propertyCount);
-
+/*
+ properties里面获取到的东西：
+ (lldb) po property_getName(properties[0])
+ "id"
+ 
+ (lldb) po property_getName(properties[1])
+ "country"
+ 
+ (lldb) po property_getName(properties[2])
+ "dialCode"
+ 
+ (lldb) po property_getName(properties[3])
+ "isInEurope"
+ 
+ 
+ (lldb) po property_getAttributes(properties[0])
+ "Tq,N,V_id"
+ 
+ (lldb) po property_getAttributes(properties[1])
+ "T@"NSString",&,N,V_country"
+ 
+ (lldb) po property_getAttributes(properties[2])
+ "T@"NSString",&,N,V_dialCode"
+ 
+ (lldb) po property_getAttributes(properties[3])
+ "TB,N,V_isInEurope"
+ 
+ */
         //loop over the class properties
         // 循环每一个 propertie 做什么操作呢：转换成JSONModelClassProperty类型的 并且存储对应的类型 名字 属性
         for (unsigned int i = 0; i < propertyCount; i++) {
@@ -616,6 +644,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
             JSONModelClassProperty* p = [[JSONModelClassProperty alloc] init];
 
             //get property name
+            // 取出单一的一个 property 然后获取 property 的name 类型 属性 等
             objc_property_t property = properties[i];
             const char *propertyName = property_getName(property);
             p.name = @(propertyName);
@@ -737,6 +766,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
             }
 
             //add the property object to the temp index
+            // propertyIndex 字典里面存的是属性的名字 和属性的key
             if (p && ![propertyIndex objectForKey:p.name]) {
                 [propertyIndex setValue:p forKey:p.name];
             }
@@ -777,7 +807,7 @@ static JSONKeyMapper* globalKeyMapper = nil;
 // for 循环结束
         free(properties);
 
-        //ascend to the super of the class
+        //ascend(升序) to the super of the class
         //(will do that until it reaches the root class - JSONModel)
         class = [class superclass];
     }
@@ -787,7 +817,9 @@ static JSONKeyMapper* globalKeyMapper = nil;
     objc_setAssociatedObject(
                              self.class,
                              &kClassPropertiesKey,
-                             [propertyIndex copy], // 将 暂时变量给关联了
+                             [propertyIndex copy],
+                             // 将 propertyIndex 暂时变量给关联了 也就是存储关联给了类的实例对象
+                             // propertyIndex 字典里面存的是属性的名字 和 属性的key
                              OBJC_ASSOCIATION_RETAIN // This is atomic
                              );
 }
