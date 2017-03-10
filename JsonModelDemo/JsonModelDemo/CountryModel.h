@@ -13,4 +13,10 @@
 @property (nonatomic) NSString *country;
 @property (nonatomic) NSString *dialCode;
 @property (nonatomic) BOOL isInEurope;
+
+@property (nonatomic,weak) id delegate;
+@property (nonatomic,copy)NSString * string;
+@property (nonatomic,strong)NSMutableArray * arr;
+@property (nonatomic,assign)NSInteger num;
+
 @end
