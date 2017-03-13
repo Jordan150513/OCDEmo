@@ -12,11 +12,14 @@
 
 
 @interface ViewController ()
+
 @property(nonatomic)NSArray * arrDefault;
 @property(nonatomic,strong)NSArray * arrStrong;
 @property(nonatomic,weak)NSArray * arrWeak;
 @property(nonatomic,assign)NSArray * arrAssign;
 
+@property(copy)NSMutableArray * nameCopyArray;
+// 没有指明是nonatomic 就说明是 atomic 的
 @end
 
 @implementation ViewController
@@ -39,8 +42,20 @@
 //    //指针的辨析
 //    [self testPointer];
     
+    [self testNSMutableArrayCopy];
 }
 
+// 当NSmutableArray用copy修饰的时候，会遇到什么问题
+#pragma mark - 当NSmutableArray用copy修饰的时候，会遇到什么问题
+-(void)testNSMutableArrayCopy{
+    NSMutableArray * array = [NSMutableArray arrayWithObjects:@"qiao",@"dan",@"erGouzi", nil];
+//    [array removeObjectAtIndex:0];   // 在这 可以正常 没有问题
+    self.nameCopyArray = array;
+    [self.nameCopyArray removeObjectAtIndex:0];  //这里就会奔溃，找不到这个方法
+    // Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__NSArrayI removeObjectAtIndex:]: unrecognized selector sent to instance 0x174245e50'
+    
+    // 说明用 copy 修饰 NSMutableArray属性的时候， setter方法里是copy，copy是不可变的copy，所以是没有草垛的方法的
+}
 #pragma mark - MRC & ARC
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSLog(@"Default:%@",self.arrDefault);
