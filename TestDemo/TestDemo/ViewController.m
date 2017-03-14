@@ -21,6 +21,8 @@
 
 @property(copy)NSMutableArray * nameCopyArray;
 // 没有指明是nonatomic 就说明是 atomic 的
+
+@property(nonatomic,copy)NSString * string;
 @end
 
 @implementation ViewController
@@ -28,6 +30,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"test everything";
+    
+    [self.string addObserver:self forKeyPath:@"array" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+//   addObserver:<#(nonnull NSObject *)#> forKeyPath:<#(nonnull NSString *)#> options:<#(NSKeyValueObservingOptions)#> context:<#(nullable void *)#>]
+    
+    self.string = [NSString stringWithFormat:@"qiao"];
+    NSString * stringNew = [NSString stringWithFormat:@"dan"];
+    self.string = stringNew;
     
 //    [self testMRCARC];
     
@@ -50,13 +59,36 @@
 //    [self testArrayNil];
     
     // test Father & Son Class
-    [self testFatherAndSon];
+//    [self testFatherAndSon];
+    
+    // test Dispatch Sync Main Queue
+//    [self testDispatchSync];
 }
+
+#pragma mark - test KVO 观察者模式
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"array"]) {
+        //是我要观察的那个
+        NSLog(@"是我要观察的那个");
+    }
+}
+#pragma mark - test Dispatch Sync Main Queue
+-(void)testDispatchSync{
+    
+    NSLog(@"1");
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        NSLog(@"2");
+    });
+    NSLog(@"3");
+}
+
+
 #pragma mark - test Father & Son Class
 -(void)testFatherAndSon{
     Son * son = [[Son alloc] init];
     NSLog(@"%@",son);
 }
+
 #pragma mark - test NSMutableArray 为nil的时候 操作 会不会崩溃
 -(void)testArrayNil{
     NSMutableArray * array = [NSMutableArray arrayWithObjects:@"qiao",@"dan",@"er", nil];
@@ -64,6 +96,7 @@
     [array removeAllObjects];
     NSLog(@"%@",array);
 }
+
 // 当NSmutableArray用copy修饰的时候，会遇到什么问题
 #pragma mark - 当NSmutableArray用copy修饰的时候，会遇到什么问题
 -(void)testNSMutableArrayCopy{
@@ -75,6 +108,7 @@
     
     // 说明用 copy 修饰 NSMutableArray属性的时候， setter方法里是copy，copy是不可变的copy，所以是没有草垛的方法的
 }
+
 #pragma mark - MRC & ARC
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSLog(@"Default:%@",self.arrDefault);

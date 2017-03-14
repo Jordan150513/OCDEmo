@@ -8,6 +8,10 @@
 
 #import "Son.h"
 
+@interface Son()
+@property(nonatomic,copy)NSString * string;
+@end
+
 @implementation Son
 - (id)init
 {
