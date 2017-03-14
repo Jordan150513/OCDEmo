@@ -9,6 +9,7 @@
 #import "ViewController.h"
 //#import "QDObject.h"
 #import <objc/runtime.h>
+#import "Son.h"
 
 
 @interface ViewController ()
@@ -42,9 +43,27 @@
 //    //指针的辨析
 //    [self testPointer];
     
-    [self testNSMutableArrayCopy];
+    // NSArray 的 copy 的测试
+//    [self testNSMutableArrayCopy];
+    
+    // test NSMutableArray 为nil的时候 操作 会不会崩溃
+//    [self testArrayNil];
+    
+    // test Father & Son Class
+    [self testFatherAndSon];
 }
-
+#pragma mark - test Father & Son Class
+-(void)testFatherAndSon{
+    Son * son = [[Son alloc] init];
+    NSLog(@"%@",son);
+}
+#pragma mark - test NSMutableArray 为nil的时候 操作 会不会崩溃
+-(void)testArrayNil{
+    NSMutableArray * array = [NSMutableArray arrayWithObjects:@"qiao",@"dan",@"er", nil];
+    array = nil;
+    [array removeAllObjects];
+    NSLog(@"%@",array);
+}
 // 当NSmutableArray用copy修饰的时候，会遇到什么问题
 #pragma mark - 当NSmutableArray用copy修饰的时候，会遇到什么问题
 -(void)testNSMutableArrayCopy{
