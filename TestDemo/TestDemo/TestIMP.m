@@ -32,13 +32,20 @@
     //找的是类方法
     IMP classIMP = class_getMethodImplementation(objc_getMetaClass("TestIMP"), aSelector);
     
-    // 2、
+    // 2、method_getImplementation() 获取IMP
+    // 1、找实例的方法IMP
     Method instanceMethod = class_getInstanceMethod(objc_getClass("TestIMP"), aSelector);
-//    IMP
+    IMP instanceIMP2 = method_getImplementation(instanceMethod);
     
-    Method classMethod = class_getClassMethod(objc_getMetaClass("TestIMP"), aSelector);
+    // 2、找类的方法IMP
+    Method classMethod1 = class_getClassMethod(objc_getClass("TestIMP"), aSelector);
+    IMP classIMP2 = method_getImplementation(classMethod1);
     
+    // 3、找类的方法IMP 元类
+    Method classMethod2 = class_getClassMethod(objc_getMetaClass("TestIMP"), aSelector);
+    IMP classIMP3 = method_getImplementation(classMethod2);
     
+    NSLog(@"instanceIMP:%p,classIMP:%p,instanceIMP2:%p,classIMP2:%p,classIMP3:%p",instanceIMP,classIMP,instanceIMP2,classIMP2,classIMP3);
 }
 
 -(void)test1{
