@@ -9,5 +9,7 @@
 #import "Father.h"
 
 @implementation Father
-
+-(void)logTheFatherMessage{
+    NSLog(@"I am Father Message.\n");
+}
 @end

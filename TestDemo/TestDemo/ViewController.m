@@ -9,7 +9,10 @@
 #import "ViewController.h"
 //#import "QDObject.h"
 #import <objc/runtime.h>
+#import <objc/objc.h>
+#import <objc/message.h>
 #import "Son.h"
+#import "TestIMP.h"
 
 
 @interface ViewController ()
@@ -31,12 +34,14 @@
     [super viewDidLoad];
     self.title = @"test everything";
     
-    [self.string addObserver:self forKeyPath:@"array" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
-//   addObserver:<#(nonnull NSObject *)#> forKeyPath:<#(nonnull NSString *)#> options:<#(NSKeyValueObservingOptions)#> context:<#(nullable void *)#>]
+    //test search IMP
+    [self testSearchIMP];
     
-    self.string = [NSString stringWithFormat:@"qiao"];
-    NSString * stringNew = [NSString stringWithFormat:@"dan"];
-    self.string = stringNew;
+    // test Message
+//    [self testMessage];
+    
+    // KVO 还没有成功出发方法，找原因
+//    [self testKVO];
     
 //    [self testMRCARC];
     
@@ -65,7 +70,39 @@
 //    [self testDispatchSync];
 }
 
+#pragma mark - test search IMP
+-(void)testSearchIMP{
+
+}
+
+#pragma mark - test Message
+-(void)testMessage{
+    
+    Son * son = [[Son alloc] init];
+    [son logTheSonMessage];
+    [son logTheFatherMessage];
+//    [son logNone];
+//    objc_msgSend(son,@selector(logNone));
+   // 我怎么创建出来一个unrecognized selector send to instance例子呢
+    
+    //  给类的实例发送消息，会先通过实例的isa到类的方法列表里寻找方法，如果没有，到父类的方法列表里寻找方法。
+    // 如果在最顶层的父类中，依然没有对应的方法，就会报错 unrecognized selector send to instance
+    // 但是在崩溃之前 objc的运行时会给出三次拯救程序崩溃的机会
+    
+    // 1.Method resolution
+    // 2.Fast forwarding
+    // 3.Normal forwarding
+}
 #pragma mark - test KVO 观察者模式
+-(void)testKVO{
+    
+    [self.string addObserver:self forKeyPath:@"array" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    //   addObserver:<#(nonnull NSObject *)#> forKeyPath:<#(nonnull NSString *)#> options:<#(NSKeyValueObservingOptions)#> context:<#(nullable void *)#>]
+    
+    self.string = [NSString stringWithFormat:@"qiao"];
+    NSString * stringNew = [NSString stringWithFormat:@"dan"];
+    self.string = stringNew;
+}
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"array"]) {
         //是我要观察的那个
