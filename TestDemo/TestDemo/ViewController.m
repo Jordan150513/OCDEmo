@@ -34,8 +34,11 @@
     [super viewDidLoad];
     self.title = @"test everything";
     
+    // test bad Access 数据越界是否会报 bad access
+    [self testBadAccess];
+    
     //test search IMP
-    [self testSearchIMP];
+//    [self testSearchIMP];
     
     // test Message
 //    [self testMessage];
@@ -68,6 +71,13 @@
     
     // test Dispatch Sync Main Queue
 //    [self testDispatchSync];
+}
+
+#pragma mark - test BAD_ACCESS
+-(void)testBadAccess{
+    NSArray * array = [NSArray arrayWithObjects:@"qiao",@"dan", nil];
+    NSLog(@"%@",[array objectAtIndex:2]);
+    //NSRangeException 不是bad access
 }
 
 #pragma mark - test search IMP
