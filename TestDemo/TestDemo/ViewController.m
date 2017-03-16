@@ -74,7 +74,7 @@
 -(void)testSearchIMP{
     
     TestIMP * testInstance1 = [[TestIMP alloc] init];
-    TestIMP * testInstance2 = [[TestIMP alloc] init];
+//    TestIMP * testInstance2 = [[TestIMP alloc] init];
     
 }
 

@@ -25,6 +25,7 @@
 }
 
 -(void)getIMPFromSelector:(SEL)aSelector{
+    // 有参考这个block：http://blog.csdn.net/dp948080952/article/details/52437451
     // 1、class_getMethodImplementation（）方法获取IMP
     // 找实例方法
     IMP instanceIMP = class_getMethodImplementation(objc_getClass("TestIMP"), aSelector);
@@ -45,14 +46,14 @@
     Method classMethod2 = class_getClassMethod(objc_getMetaClass("TestIMP"), aSelector);
     IMP classIMP3 = method_getImplementation(classMethod2);
     
-    NSLog(@"instanceIMP:%p,classIMP:%p,instanceIMP2:%p,classIMP2:%p,classIMP3:%p",instanceIMP,classIMP,instanceIMP2,classIMP2,classIMP3);
+    NSLog(@"instanceIMP:%p,instanceIMP2:%p,,classIMP:%p,classIMP2:%p,classIMP3:%p",instanceIMP,instanceIMP2,classIMP,classIMP2,classIMP3);
 }
 
 -(void)test1{
     NSLog(@"test1");
 }
 
--(void)test2{
++(void)test2{
     NSLog(@"test2");
 }
 
