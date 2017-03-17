@@ -12,6 +12,7 @@
 @interface ViewController ()
 @property(nonatomic,strong)Person *aPerson;
 
+@property(nonatomic,strong)NSString * foodNameString;
 @end
 
 @implementation ViewController
@@ -27,6 +28,10 @@
     
     [aPerson setName:@"dan"];
     //总算是实现了
+    
+    [self addObserver:self forKeyPath:@"foodNameString" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    self.foodNameString = @"hamburger";
+    self.foodNameString = @"soup";
 }
 
 // 实现监听
@@ -34,11 +39,16 @@
     if ([keyPath isEqualToString:@"name"]) {
         NSLog(@"旧值：%@",[change objectForKey:@"old"]);
         NSLog(@"新值：%@",[change objectForKey:@"new"]);
+    }else if ([keyPath isEqualToString:@"foodNameString"]){
+        NSLog(@"foodNameString旧值：%@",[change objectForKey:@"old"]);
+        NSLog(@"foodNameString新值：%@",[change objectForKey:@"new"]);
+    
     }
 }
 
 -(void)dealloc{
     [_aPerson removeObserver:self forKeyPath:@"name"];
+    [self removeObserver:self forKeyPath:@"foodNameString"];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -35,7 +35,7 @@
     self.title = @"test everything";
     
     // test bad Access 数据越界是否会报 bad access
-    [self testBadAccess];
+//    [self testBadAccess];
     
     //test search IMP
 //    [self testSearchIMP];
@@ -44,7 +44,7 @@
 //    [self testMessage];
     
     // KVO 还没有成功出发方法，找原因
-//    [self testKVO];
+    [self testKVO];
     
 //    [self testMRCARC];
     
@@ -109,18 +109,24 @@
 #pragma mark - test KVO 观察者模式
 -(void)testKVO{
     
-    [self.string addObserver:self forKeyPath:@"array" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    [self addObserver:self forKeyPath:@"string" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
     //   addObserver:<#(nonnull NSObject *)#> forKeyPath:<#(nonnull NSString *)#> options:<#(NSKeyValueObservingOptions)#> context:<#(nullable void *)#>]
     
     self.string = [NSString stringWithFormat:@"qiao"];
     NSString * stringNew = [NSString stringWithFormat:@"dan"];
     self.string = stringNew;
 }
+
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:@"array"]) {
+    if ([keyPath isEqualToString:@"string"]) {
         //是我要观察的那个
         NSLog(@"是我要观察的那个");
+        NSLog(@"string旧值：%@",[change objectForKey:@"old"]);
+        NSLog(@"string新值：%@",[change objectForKey:@"new"]);
     }
+}
+-(void)dealloc{
+    [self removeObserver:self forKeyPath:@"string"];
 }
 #pragma mark - test Dispatch Sync Main Queue
 -(void)testDispatchSync{
