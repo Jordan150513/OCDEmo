@@ -26,6 +26,10 @@
 // 没有指明是nonatomic 就说明是 atomic 的
 
 @property(nonatomic,copy)NSString * string;
+
+@property(nonatomic,copy)NSString * string1;
+@property(nonatomic,copy)NSString * string2;
+@property(nonatomic,copy)NSString * string3;
 @end
 
 @implementation ViewController
@@ -34,6 +38,7 @@
     [super viewDidLoad];
     self.title = @"test everything";
     
+    [self theChangeToTheStringinArray];
     // test bad Access 数据越界是否会报 bad access
 //    [self testBadAccess];
     
@@ -43,8 +48,8 @@
     // test Message
 //    [self testMessage];
     
-    // KVO 还没有成功出发方法，找原因
-    [self testKVO];
+    // KVO 还没有成功出发方法，找原因 已经成功了
+//    [self testKVO];
     
 //    [self testMRCARC];
     
@@ -73,6 +78,28 @@
 //    [self testDispatchSync];
 }
 
+-(void)theChangeToTheStringinArray{
+    // 这里有一个问题 要跟二狗子 商量 探讨一下 
+    self.string1 = [NSString stringWithFormat:@"0"];
+    self.string2 = [NSString stringWithFormat:@"0"];
+    self.string3 = [NSString stringWithFormat:@"0"];
+    NSMutableArray * array = [NSMutableArray arrayWithObjects:self.string1,self.string2,self.string3,nil];
+    for (int i = 0; i<array.count; i++) {
+//        array[i] = [[NSString stringWithFormat:@"0.00"] copy];
+
+    };
+    NSLog(@"%@,%@,%@",self.string1,self.string2,self.string3);
+    /*
+     //    // 对 Orderamount Paidamount Unpayamont CurPayAmount 进行处理，如果返回的是@"0"或者是@“0” 就标示是”0.00“
+     //    NSMutableArray <NSString *>* array = [NSMutableArray arrayWithObjects:_clientDitailCommenModel.Orderamount,_clientDitailCommenModel.Paidamount,_clientDitailCommenModel.Unpayamont,_clientDitailCommenModel.CurPayAmount, nil];
+     //    for (int i = 0; i<array.count; i++) {
+     //        if ([array[i] isEqualToString:@""]||[array[i] isEqualToString:@"0"]) {
+     //            array[i] = @"0.00";
+     //        }
+     //    }
+     // 对下面进行改写
+     */
+}
 #pragma mark - test BAD_ACCESS
 -(void)testBadAccess{
     NSArray * array = [NSArray arrayWithObjects:@"qiao",@"dan", nil];
