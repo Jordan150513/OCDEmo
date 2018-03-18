@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6515035A205D0DAE0010BEAC /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = 65150359205D0DAE0010BEAC /* Screen.m */; };
+		6515035D205D0DC10010BEAC /* LEDScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 6515035C205D0DC10010BEAC /* LEDScreen.m */; };
 		DC2D16381E5EA3E50070E506 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2D16371E5EA3E50070E506 /* main.m */; };
 		DC2D163B1E5EA3E50070E506 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2D163A1E5EA3E50070E506 /* AppDelegate.m */; };
 		DC2D163E1E5EA3E50070E506 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2D163D1E5EA3E50070E506 /* ViewController.m */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65150358205D0DAE0010BEAC /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
+		65150359205D0DAE0010BEAC /* Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screen.m; sourceTree = "<group>"; };
+		6515035B205D0DC10010BEAC /* LEDScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEDScreen.h; sourceTree = "<group>"; };
+		6515035C205D0DC10010BEAC /* LEDScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEDScreen.m; sourceTree = "<group>"; };
 		DC2D16331E5EA3E50070E506 /* TestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC2D16371E5EA3E50070E506 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC2D16391E5EA3E50070E506 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,6 +118,10 @@
 				DC2D16361E5EA3E50070E506 /* Supporting Files */,
 				DCDC96041E680DBC00A9E259 /* QDObject.h */,
 				DCDC96051E680DBC00A9E259 /* QDObject.m */,
+				65150358205D0DAE0010BEAC /* Screen.h */,
+				65150359205D0DAE0010BEAC /* Screen.m */,
+				6515035B205D0DC10010BEAC /* LEDScreen.h */,
+				6515035C205D0DC10010BEAC /* LEDScreen.m */,
 			);
 			path = TestDemo;
 			sourceTree = "<group>";
@@ -279,8 +289,10 @@
 			files = (
 				DC2D163E1E5EA3E50070E506 /* ViewController.m in Sources */,
 				DCDC96061E680DBC00A9E259 /* QDObject.m in Sources */,
+				6515035A205D0DAE0010BEAC /* Screen.m in Sources */,
 				DC2D163B1E5EA3E50070E506 /* AppDelegate.m in Sources */,
 				DC2D16381E5EA3E50070E506 /* main.m in Sources */,
+				6515035D205D0DC10010BEAC /* LEDScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

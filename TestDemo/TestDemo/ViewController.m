@@ -42,8 +42,63 @@
 //    //指针的辨析
 //    [self testPointer];
     
-    [self testNSMutableArrayCopy];
+//    [self testNSMutableArrayCopy];
+    
+    // 用正则表达式 实现对string的处理
+    [self testSeperateString];
+    
+    // 考察super作为编译器指示符号的作用
+    //[self testFatherSon];
+    
+    
 }
+
+-(void)testLayout{
+
+    UIView * view = [[UIView alloc] init];
+    [self.view addSubview:view];
+    [self.view layoutIfNeeded];
+    [self.view layoutSubviews];
+    [self.view setNeedsLayout];
+    [self.view setNeedsDisplay];
+}
+
+//-(void)testRegularReplace{
+  //  NSString *regex = @"(<img.*?/>)";
+    //NSRange r;
+    //NSMutableString *newHtml = [NSMutableString stringWithString:oldHtml];
+    
+   // BOOL flag = false;
+    
+    //while (flag == false) {
+        
+      //  r = [newHtml rangeOfString:regex options:NSRegularExpressionSearch];
+        //if (r.location != NSNotFound) {
+          //  [newHtml replaceCharactersInRange:r withString:@""];
+        //} else {
+          //  flag = true;
+        //}
+        
+    //};
+    //return newHtml;
+//}
+
+-(void)testFatherSon{
+    Screen * screen = [Screen new];
+    [screen helloScreen];
+    LEDScreen * ledscreen = [LEDScreen new];
+    [ledscreen helloScreen];
+}
+    
+    -(void)testSeperateString{
+    
+        NSString * str1 = @"1234567890.12";
+        
+        NSRegularExpression *regularExp = [[NSRegularExpression alloc] initWithPattern:@"\\d(?=(\\d{3})+(?!\\d))" options:NSRegularExpressionCaseInsensitive error:nil];
+        str1 = [regularExp stringByReplacingMatchesInString:str1 options:0 range:NSMakeRange(0, str1.length) withTemplate:@"$0,"];
+        NSLog(@"%@", str1);
+    }
+
 
 // 当NSmutableArray用copy修饰的时候，会遇到什么问题
 #pragma mark - 当NSmutableArray用copy修饰的时候，会遇到什么问题

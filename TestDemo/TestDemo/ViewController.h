@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Screen.h"
+#import "LEDScreen.h"
 
 @interface ViewController : UIViewController
 
