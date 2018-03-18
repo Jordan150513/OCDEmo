@@ -20,6 +20,8 @@
 
 @property(copy)NSMutableArray * nameCopyArray;
 // 没有指明是nonatomic 就说明是 atomic 的
+
+@property(nonatomic,strong)UIView * animateview;
 @end
 
 @implementation ViewController
@@ -45,12 +47,32 @@
 //    [self testNSMutableArrayCopy];
     
     // 用正则表达式 实现对string的处理
-    [self testSeperateString];
+    //[self testSeperateString];
+    
+    [self testAnimation];
     
     // 考察super作为编译器指示符号的作用
     //[self testFatherSon];
     
     
+}
+
+-(void)testAnimation{
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(10, 50, 100, 100)];
+    [view setBackgroundColor:[UIColor redColor]];
+    self.animateview = view;
+    self.animateview.userInteractionEnabled = NO;
+    [self.view addSubview:self.animateview];
+    [UIView animateWithDuration:10.0 animations:^{
+        [self.animateview setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-100, 50, 100, 100)];
+    }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    CGPoint point = [[touches anyObject] locationInView:self.view];
+    if ([self.animateview.layer.presentationLayer hitTest:point]) {
+        NSLog(@"button clicked!----------");
+    }
 }
 
 -(void)testLayout{
@@ -112,14 +134,14 @@
     // 说明用 copy 修饰 NSMutableArray属性的时候， setter方法里是copy，copy是不可变的copy，所以是没有草垛的方法的
 }
 #pragma mark - MRC & ARC
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSLog(@"Default:%@",self.arrDefault);
-    NSLog(@"Strong:%@",self.arrStrong);
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    //NSLog(@"Default:%@",self.arrDefault);
+  //  NSLog(@"Strong:%@",self.arrStrong);
 //    NSLog(@"Assign:%@",self.arrAssign);//报错，访问了已经释放了的内存地址
-    NSLog(@"Weak:%@",self.arrWeak);
+ //   NSLog(@"Weak:%@",self.arrWeak);
     // 打印出来是 null weak释放回收之后，会赋值nil（是在强引用归零的时候，什么时候强引用归零了？这个就一个弱引用，所以弱引用赋值之后，代码块执行完之后，会检查，没有强引用就释放掉了，所以后来我们就看不到了） 但是assign不会在强引用归零的时候进行置为nil的操作
-    NSLog(@"--------------------\n");
-}
+ //   NSLog(@"--------------------\n");
+//}
 
 #pragma mark - MRC & ARC
 -(void)testMRCARC{
