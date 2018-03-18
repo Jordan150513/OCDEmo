@@ -21,6 +21,9 @@
     NSString * string = @"1234567890";
 //    [self insertSeperateToString:string];
     
+    // 用正则表达式分隔插入逗号
+    [self testSeperateString];
+    
     //排序
     // 1、快速排序
     NSArray * array = [NSArray arrayWithObjects:@7,@1,@14,@8,@88,@9,@67,@34,@9,@77,@4, nil];
@@ -33,6 +36,17 @@
     //响应链的问题：
     [self responseToAction];
 }
+
+
+-(void)testSeperateString{
+    
+    NSString * str1 = @"1234567890.12";
+    
+    NSRegularExpression *regularExp = [[NSRegularExpression alloc] initWithPattern:@"\\d(?=(\\d{3})+(?!\\d))" options:NSRegularExpressionCaseInsensitive error:nil];
+    str1 = [regularExp stringByReplacingMatchesInString:str1 options:0 range:NSMakeRange(0, str1.length) withTemplate:@"$0,"];
+    NSLog(@"%@", str1);
+}
+
 
 #pragma mark - 响应链的问题
 -(void)responseToAction{
